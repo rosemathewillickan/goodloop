@@ -1,5 +1,8 @@
 # GoodLoop — setup
 
+**Live:** https://goodloop-rho.vercel.app
+**Repo:** https://github.com/rosemathewillickan/goodloop
+
 ## 1. Create the Supabase project
 
 1. [supabase.com/dashboard](https://supabase.com/dashboard) → sign in with GitHub → **New Project**.
