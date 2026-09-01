@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { ChefHat, Bike, HeartHandshake, UserPlus } from "lucide-react";
 import { signUp, type FormState } from "@/app/auth/actions";
+import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 import { ROLE_META } from "@/lib/roles";
 import type { Role } from "@/lib/supabase/types";
 
@@ -50,7 +51,20 @@ function SignupForm() {
         <h1 className="mt-4 text-2xl font-semibold text-sand-900">Create an account</h1>
         <p className="mt-1 text-sm text-sand-500">Join the GoodLoop network.</p>
 
-        <form action={formAction} className="mt-6 space-y-4">
+        <div className="mt-6">
+          <GoogleSignInButton />
+          <p className="mt-2 text-center text-xs text-sand-400">
+            Starts as a volunteer — an operator can change your role after sign-up.
+          </p>
+        </div>
+
+        <div className="my-5 flex items-center gap-3">
+          <span className="h-px flex-1 bg-sand-200" />
+          <span className="text-xs text-sand-400">or sign up with a role</span>
+          <span className="h-px flex-1 bg-sand-200" />
+        </div>
+
+        <form action={formAction} className="space-y-4">
           <div>
             <span className="block text-sm font-medium text-sand-700">I am a...</span>
             <div className="mt-2 space-y-2">

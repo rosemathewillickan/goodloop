@@ -73,6 +73,50 @@ New restaurant/volunteer/ngo accounts start `pending` — as admin, verify them 
 5. As **volunteer**: accept the open run, confirm pickup, confirm distribution.
 6. Check the donation's timeline (restaurant view) and the **Notifications** feed (mocked WhatsApp) update at each step.
 
+## 8. Enable Google sign-in
+
+The code side (the "Continue with Google" button on `/login` and `/signup`, and the
+`/auth/callback` route that completes the flow) is already built. Three manual steps
+are needed to turn it on — they use your own Google and Supabase accounts, so they
+can't be done for you.
+
+**A. Google Cloud Console — create OAuth credentials**
+
+1. [console.cloud.google.com](https://console.cloud.google.com) → project selector → **New Project** (separate from Supabase/Vercel) → name it → **Create**, then make sure it's selected.
+2. Search bar → **Google Auth Platform** → **Get started** → fill app name + support email → **Next** → Audience: **External** → **Next** → developer contact email → **Next** → agree → **Create**.
+3. Left sidebar → **Clients** → **Create OAuth client**.
+   - Application type: **Web application**.
+   - **Authorized JavaScript origins** → add both:
+     - `http://localhost:3000`
+     - `https://goodloop-rho.vercel.app`
+   - **Authorized redirect URIs** → add Supabase's own callback (not your app's URL):
+     - `https://jhhpgqjtbttucsvbiadg.supabase.co/auth/v1/callback`
+   - **Create**. Copy the **Client ID** and **Client secret** shown (the secret won't be shown again).
+4. **Publish the app** — left sidebar → **Audience** → **Publish app**. If it's greyed out, go to **Branding** first and fill in the app home page / privacy policy / terms links (reusing `https://goodloop-rho.vercel.app` for all three is fine) and add `goodloop-rho.vercel.app` under **Authorized domains** (the full subdomain, not just `vercel.app`) — then Publish. Skipping this silently restricts login to an allowlist of test users, which will block anyone who isn't you.
+
+**B. Supabase — paste the credentials in**
+
+1. Your project → **Authentication** → **Sign In / Providers** → find **Google** in the provider list → toggle it on.
+2. Paste the **Client ID** and **Client secret** from step A.3 → **Save**.
+3. Left sub-nav → **URL Configuration** → set **Site URL** to `https://goodloop-rho.vercel.app`, and under **Redirect URLs** add both:
+   - `https://goodloop-rho.vercel.app/auth/callback`
+   - `http://localhost:3000/auth/callback`
+   → **Save changes**.
+
+**C. That's it** — no code or env var changes needed; the button already points at whichever origin it's clicked from.
+
+**Note on roles:** Google sign-ups skip the role-selection form (Google doesn't carry
+custom app fields), so they land as `volunteer` — the same lowest-privilege default
+already used for any signup with a missing/invalid role. If someone signs up with
+Google but should be a restaurant/NGO/admin, promote them manually:
+
+Look up their id first (`select id from auth.users where email = '...'`), then use it directly — same reasoning as step 6 above:
+
+```sql
+update profiles set role = 'restaurant' -- or 'ngo' / 'admin'
+where id = '<the-id>';
+```
+
 ## What's mocked for this assignment build
 
 - **OTP auth** → real Supabase email/password auth instead.
