@@ -9,7 +9,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-fredoka);
   --font-mono: var(--font-geist-mono);
 
   /* Brand: fresh, happy leaf green. */
@@ -37,6 +37,7 @@
   --color-sun-100: #fff3c4;
   --color-sun-200: #ffe789;
   --color-sun-300: #ffdc5c;
+  --color-sun-400: #ffd24c;
   --color-sun-500: #ffc93c;
   --color-sun-600: #f5a623;
 
@@ -68,6 +69,14 @@
   --color-sand-800: #322922;
   --color-sand-900: #1f1914;
 
+  /* Purple: fourth loop accent — community/supporter role, loop-ribbon variety. */
+  --color-purple-50: #f5f1fc;
+  --color-purple-100: #e9defa;
+  --color-purple-300: #c0a3ef;
+  --color-purple-500: #7650c8;
+  --color-purple-600: #6540b0;
+  --color-purple-700: #4f3190;
+
   /* One reserved accent per role — badges, nav highlight, icons, illustrations. */
   --color-role-restaurant: #107140;
   --color-role-restaurant-bg: #eefcf3;
@@ -75,6 +84,8 @@
   --color-role-volunteer-bg: #eef9ff;
   --color-role-ngo: #a52e92;
   --color-role-ngo-bg: #fdf2fb;
+  --color-role-supporter: #6540b0;
+  --color-role-supporter-bg: #f5f1fc;
   --color-role-admin: #47556a;
   --color-role-admin-bg: #eef1f5;
 }
@@ -83,6 +94,37 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* GoodLoop motion language — small, reusable keyframes shared by the loop
+   ribbon and floating doodles. Disabled wholesale under reduced motion. */
+@keyframes gl-float {
+  0%, 100% { transform: translateY(0) rotate(var(--gl-rot, 0deg)); }
+  50% { transform: translateY(-8px) rotate(var(--gl-rot, 0deg)); }
+}
+@keyframes gl-wiggle {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+@keyframes gl-dash {
+  to { stroke-dashoffset: -200; }
+}
+@keyframes gl-pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.06); }
+}
+.gl-animate-float { animation: gl-float 4s ease-in-out infinite; }
+.gl-animate-wiggle { animation: gl-wiggle 2.6s ease-in-out infinite; }
+.gl-animate-dash { animation: gl-dash 7s linear infinite; }
+.gl-animate-pulse { animation: gl-pulse-soft 2.4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gl-animate-float,
+  .gl-animate-wiggle,
+  .gl-animate-dash,
+  .gl-animate-pulse {
+    animation: none !important;
+  }
 }
 
 .leaflet-container {

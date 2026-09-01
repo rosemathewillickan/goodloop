@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChefHat, Bike, HeartHandshake, ArrowRight, LogIn } from "lucide-react";
+import { ChefHat, Bike, HeartHandshake, Heart, ArrowRight, LogIn } from "lucide-react";
 import { FoodClusterIllustration } from "@/components/illustrations/FoodCluster";
 
 const PATHS = [
@@ -11,6 +11,7 @@ const PATHS = [
     body: "For restaurants, hotels, caterers and bakeries.",
     cta: "Start as a Food Partner",
     href: "/signup?role=restaurant",
+    note: "Leads to account creation",
   },
   {
     icon: Bike,
@@ -20,6 +21,7 @@ const PATHS = [
     body: "For people who can make nearby pickups.",
     cta: "Become a Food Runner",
     href: "/signup?role=volunteer",
+    note: "Leads to account creation",
   },
   {
     icon: HeartHandshake,
@@ -29,13 +31,24 @@ const PATHS = [
     body: "For NGOs and community organisations.",
     cta: "Become a Community Partner",
     href: "/signup?role=ngo",
+    note: "Leads to account creation",
+  },
+  {
+    icon: Heart,
+    color: "var(--color-role-supporter)",
+    bg: "var(--color-role-supporter-bg)",
+    title: "Support the mission",
+    body: "Curious about the impact, or just here to cheer the loop on.",
+    cta: "See our impact",
+    href: "/impact",
+    note: "No account needed",
   },
 ];
 
 export default function GetInvolvedPage() {
   return (
     <div className="relative overflow-hidden">
-      <FoodClusterIllustration className="pointer-events-none absolute -top-4 left-1/2 h-auto w-full max-w-2xl -translate-x-1/2 opacity-30" />
+      <FoodClusterIllustration className="pointer-events-none absolute top-44 left-1/2 h-auto w-full max-w-xl -translate-x-1/2 opacity-30 sm:top-48" />
       <div className="relative mx-auto max-w-4xl px-4 py-14">
       <div className="text-center">
         <h1 className="text-3xl font-semibold tracking-tight text-sand-900 sm:text-4xl">What can you do?</h1>
@@ -45,7 +58,7 @@ export default function GetInvolvedPage() {
         </p>
       </div>
 
-      <div className="mt-10 grid gap-5 sm:grid-cols-3">
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {PATHS.map((p) => (
           <div
             key={p.title}
@@ -68,8 +81,12 @@ export default function GetInvolvedPage() {
               <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
             </Link>
             <p className="mt-2 flex items-center justify-center gap-1 text-xs text-sand-400">
-              <LogIn className="h-3 w-3" strokeWidth={2.25} />
-              Leads to account creation
+              {p.note === "No account needed" ? (
+                <Heart className="h-3 w-3" strokeWidth={2.25} />
+              ) : (
+                <LogIn className="h-3 w-3" strokeWidth={2.25} />
+              )}
+              {p.note}
             </p>
           </div>
         ))}

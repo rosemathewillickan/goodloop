@@ -2,6 +2,7 @@ import { HandHeart, Package, Bike, MapPinned, CheckCircle2 } from "lucide-react"
 import { DemoBadge } from "@/components/DemoBadge";
 import { ConversionPrompt } from "@/components/ConversionPrompt";
 import { AvatarFace } from "@/components/illustrations/AvatarFace";
+import { ImpactCounter } from "@/components/ImpactCounter";
 import { DEMO_IMPACT_STATS } from "@/lib/demoData";
 
 const ICONS = [HandHeart, Package, Bike, MapPinned, CheckCircle2];
@@ -40,7 +41,9 @@ export default function ImpactPage() {
               <span className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
                 <Icon className="h-5 w-5" strokeWidth={2} />
               </span>
-              <p className="mt-3 text-2xl font-semibold text-sand-900">{s.value}</p>
+              <p className="mt-3 text-2xl font-semibold text-sand-900">
+                <ImpactCounter value={s.value} />
+              </p>
               <p className="mt-0.5 text-xs text-sand-500">{s.label}</p>
             </div>
           );

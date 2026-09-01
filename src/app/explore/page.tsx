@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChefHat, Bike, HeartHandshake, Sparkles, ArrowRight } from "lucide-react";
+import { ChefHat, Bike, HeartHandshake, Heart, ArrowRight } from "lucide-react";
 import { HelpingHandsIllustration } from "@/components/illustrations/HelpingHands";
 
 const STAKEHOLDERS = [
@@ -34,9 +34,9 @@ const STAKEHOLDERS = [
     href: "/demo/match",
   },
   {
-    icon: Sparkles,
-    color: "var(--color-accent-600)",
-    bg: "var(--color-accent-50)",
+    icon: Heart,
+    color: "var(--color-role-supporter)",
+    bg: "var(--color-role-supporter-bg)",
     title: "Supporter",
     question: "Want to make an impact?",
     body: "Explore GoodLoop's impact and discover ways to support the network.",
@@ -48,7 +48,7 @@ const STAKEHOLDERS = [
 export default function ExplorePage() {
   return (
     <div className="relative overflow-hidden">
-      <HelpingHandsIllustration className="pointer-events-none absolute -top-6 left-1/2 h-auto w-80 -translate-x-1/2 opacity-[0.12]" />
+      <HelpingHandsIllustration className="pointer-events-none absolute top-40 left-1/2 h-auto w-72 -translate-x-1/2 opacity-10 sm:top-44" />
       <div className="relative mx-auto max-w-4xl px-4 py-14">
         <div className="text-center">
           <h1 className="text-3xl font-semibold tracking-tight text-sand-900 sm:text-4xl">
