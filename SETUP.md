@@ -64,6 +64,21 @@ Use the id directly, not a `where id = (select ...)` subquery matching on email 
 
 New restaurant/volunteer/ngo accounts start `pending` — as admin, verify them under **Verify** in the nav before they can donate/accept runs/report need zones.
 
+### Seed demo data for the three test accounts
+
+To make the restaurant/volunteer/ngo dashboards show real donations, runs, and need
+zones instead of empty states, run [`supabase/seed_demo_data.sql`](supabase/seed_demo_data.sql)
+once in the SQL Editor (paste and Run). It's idempotent — safe to run more than once,
+it just skips rows it already created. It adds:
+
+- Two open donations for the restaurant (so **Active donations** isn't 0)
+- One donation matched + assigned to the volunteer test account (active run)
+- One donation picked up by the volunteer test account (active run, later stage)
+- One completed run handled by the ngo test account (bumps meals redistributed)
+- One open, unclaimed run for the volunteer to accept from **Available runs nearby**
+- An active + a pending need zone reported by the ngo test account
+- Matching entries in each account's **Notifications** feed
+
 ## 7. Golden path to test
 
 1. As **admin**: verify a restaurant, a volunteer, and an ngo account.
