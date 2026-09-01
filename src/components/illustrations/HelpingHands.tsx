@@ -1,36 +1,66 @@
-// Two simple flat-vector figures, one handing something to the other —
-// the "community helping" motif, used across volunteer/NGO contexts.
+// Two full flat-vector people, in the same chunky-outlined character style
+// as AvatarFace, exchanging a parcel — the "community helping" motif used
+// across volunteer/NGO contexts.
+import { OUTLINE, personTraits } from "./AvatarFace";
+
+const PANTS = "#33415C";
+const SHOE = "#FBEFDD";
+
+function Person({ seed, reach }: { seed: string; reach: "left" | "right" }) {
+  const { skin, hair, outfit, Hairstyle } = personTraits(seed);
+  const reachArm =
+    reach === "right"
+      ? "M44 68C54 74 62 82 66 92"
+      : "M16 68C6 74 -2 82 -6 92";
+  const restArm = reach === "right" ? "M16 68C14 78 14 88 16 96" : "M44 68C46 78 46 88 44 96";
+  const handCx = reach === "right" ? 66 : -6;
+
+  return (
+    <g>
+      {/* legs */}
+      <rect x="18" y="108" width="13" height="40" rx="6" fill={PANTS} stroke={OUTLINE} strokeWidth="1.6" />
+      <rect x="34" y="108" width="13" height="40" rx="6" fill={PANTS} stroke={OUTLINE} strokeWidth="1.6" />
+      <rect x="16" y="142" width="17" height="10" rx="5" fill={SHOE} stroke={OUTLINE} strokeWidth="1.6" />
+      <rect x="32" y="142" width="17" height="10" rx="5" fill={SHOE} stroke={OUTLINE} strokeWidth="1.6" />
+
+      {/* torso */}
+      <rect x="12" y="58" width="41" height="54" rx="15" fill={outfit} stroke={OUTLINE} strokeWidth="1.8" />
+
+      {/* arms (behind hands, drawn under head so shoulders read cleanly) */}
+      <path d={restArm} stroke={outfit} strokeWidth="11" strokeLinecap="round" />
+      <path d={reachArm} stroke={outfit} strokeWidth="11" strokeLinecap="round" />
+      <circle cx={handCx} cy="92" r="6" fill={skin} stroke={OUTLINE} strokeWidth="1.6" />
+
+      {/* head */}
+      <circle cx="30" cy="26" r="16" fill={skin} stroke={OUTLINE} strokeWidth="1.6" />
+      <circle cx="24" cy="26" r="1.9" fill={OUTLINE} />
+      <circle cx="36" cy="26" r="1.9" fill={OUTLINE} />
+      <path d="M22 32c3 4 13 4 16 0" stroke={OUTLINE} strokeWidth="2.2" fill="none" strokeLinecap="round" />
+      <circle cx="18" cy="30" r="3" fill="#E8746A" opacity="0.35" />
+      <circle cx="42" cy="30" r="3" fill="#E8746A" opacity="0.35" />
+      <Hairstyle hair={hair} />
+    </g>
+  );
+}
+
 export function HelpingHandsIllustration({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 320 220" className={className} aria-hidden="true">
       <ellipse cx="160" cy="205" rx="130" ry="10" fill="var(--color-sand-200)" />
 
-      {/* left figure (volunteer) */}
-      <g>
-        <circle cx="90" cy="60" r="26" fill="var(--color-sun-300)" />
-        <path d="M64 60a26 26 0 0 1 52 0" fill="var(--color-sand-700)" />
-        <rect x="66" y="88" width="48" height="70" rx="18" fill="var(--color-role-volunteer)" />
-        <rect x="52" y="150" width="18" height="46" rx="8" fill="var(--color-sand-600)" />
-        <rect x="100" y="150" width="18" height="46" rx="8" fill="var(--color-sand-600)" />
-        <path d="M112 110 L150 120" stroke="var(--color-role-volunteer)" strokeWidth="14" strokeLinecap="round" />
+      <g transform="translate(45,32)">
+        <Person seed="helping-hands-left" reach="right" />
+      </g>
+      <g transform="translate(185,32)">
+        <Person seed="helping-hands-right" reach="left" />
       </g>
 
       {/* the parcel changing hands */}
-      <rect x="140" y="102" width="34" height="28" rx="4" fill="var(--color-accent-500)" />
-      <path d="M140 116h34M157 102v28" stroke="var(--color-accent-700)" strokeWidth="2" />
+      <rect x="141" y="103" width="34" height="28" rx="4" fill="var(--color-accent-500)" stroke={OUTLINE} strokeWidth="1.8" />
+      <path d="M141 117h34M158 103v28" stroke={OUTLINE} strokeWidth="2" />
 
-      {/* right figure (elder / community member) */}
-      <g>
-        <circle cx="230" cy="60" r="26" fill="var(--color-sun-200)" />
-        <path d="M204 55c4-16 48-16 52 0" fill="var(--color-sand-300)" />
-        <rect x="206" y="88" width="48" height="70" rx="18" fill="var(--color-role-ngo)" />
-        <rect x="192" y="150" width="18" height="46" rx="8" fill="var(--color-sand-600)" />
-        <rect x="240" y="150" width="18" height="46" rx="8" fill="var(--color-sand-600)" />
-        <path d="M208 110 L170 120" stroke="var(--color-role-ngo)" strokeWidth="14" strokeLinecap="round" />
-      </g>
-
-      <path d="M42 40l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="var(--color-sky-300)" />
-      <circle cx="280" cy="36" r="5" fill="var(--color-berry-300)" />
+      <path d="M42 40l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="var(--color-sky-300)" stroke={OUTLINE} strokeWidth="1.2" strokeLinejoin="round" />
+      <circle cx="280" cy="36" r="5" fill="var(--color-berry-300)" stroke={OUTLINE} strokeWidth="1.2" />
     </svg>
   );
 }
