@@ -7,7 +7,7 @@ import { reportNeedZone, type FormState } from "@/app/need-zones/actions";
 
 const MapPicker = dynamic(() => import("@/components/MapPicker").then((m) => m.MapPicker), {
   ssr: false,
-  loading: () => <div className="h-[280px] animate-pulse rounded-xl border border-sand-300 bg-sand-100" />,
+  loading: () => <div className="h-[280px] animate-pulse rounded-xl border-2 border-sand-300 bg-sand-100" />,
 });
 
 const initialState: FormState = { error: null };
@@ -28,7 +28,7 @@ export default function NewNeedZonePage() {
         </div>
       </div>
 
-      <form action={formAction} className="mt-6 space-y-4 rounded-2xl border border-sand-200 bg-white p-5">
+      <form action={formAction} className="mt-6 space-y-4 rounded-2xl border-2 border-sand-200 bg-white p-5">
         <div>
           <label className="block text-sm font-medium text-sand-700" htmlFor="location_text">
             Location description
@@ -38,7 +38,7 @@ export default function NewNeedZonePage() {
             name="location_text"
             required
             placeholder="e.g. Under the flyover near Central Station, north side"
-            className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+            className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
           />
         </div>
 
@@ -52,7 +52,7 @@ export default function NewNeedZonePage() {
               name="estimated_people"
               type="number"
               min={1}
-              className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+              className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
             />
           </div>
           <div>
@@ -63,7 +63,7 @@ export default function NewNeedZonePage() {
               id="urgency"
               name="urgency"
               defaultValue="medium"
-              className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+              className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
             >
               <option value="low">Low</option>
               <option value="medium">Medium</option>

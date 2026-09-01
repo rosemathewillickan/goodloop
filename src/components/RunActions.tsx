@@ -65,7 +65,7 @@ export function RunActions({ run, isMine }: { run: FoodRun; isMine: boolean }) {
               min={1}
               required
               placeholder="Meals distributed"
-              className="w-40 rounded-xl border border-sand-300 px-2 py-1.5 text-sm"
+              className="w-40 rounded-xl border-2 border-sand-300 px-2 py-1.5 text-sm"
             />
           }
         />
@@ -83,7 +83,7 @@ export function RunActions({ run, isMine }: { run: FoodRun; isMine: boolean }) {
                 name="reason"
                 required
                 placeholder="Why can't this run be completed?"
-                className="w-64 rounded-xl border border-sand-300 px-2 py-1.5 text-sm"
+                className="w-64 rounded-xl border-2 border-sand-300 px-2 py-1.5 text-sm"
               />
             }
           />

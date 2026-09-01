@@ -3,6 +3,10 @@ import { ChefHat, Bike, HeartHandshake, Leaf, ArrowRight, ShieldCheck } from "lu
 import { getCurrentProfile, roleHome } from "@/lib/profile";
 import { redirect } from "next/navigation";
 import { HeroLoopIllustration } from "@/components/illustrations/HeroLoop";
+import { FoodClusterIllustration } from "@/components/illustrations/FoodCluster";
+import { AvatarFace } from "@/components/illustrations/AvatarFace";
+
+const FACE_SEEDS = ["priya", "rahul", "amara", "leo", "nadia", "sam"];
 
 export default async function Home() {
   const profile = await getCurrentProfile();
@@ -24,9 +28,16 @@ export default async function Home() {
               <Leaf className="h-3.5 w-3.5" strokeWidth={2.5} />
               GoodLoop
             </span>
-            <h1 className="mt-5 text-4xl font-semibold tracking-tight text-sand-900 sm:text-5xl">
+            <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-sand-900 sm:text-6xl">
               Keep good food
-              <span className="text-accent-600"> going.</span>
+              <span className="relative inline-block text-accent-600">
+                {" "}
+                going
+                <svg viewBox="0 0 120 18" className="absolute -bottom-1 left-0 h-3 w-full text-sun-400" aria-hidden="true">
+                  <path d="M2 12c20-10 96-10 116 0" stroke="currentColor" strokeWidth="6" strokeLinecap="round" fill="none" />
+                </svg>
+              </span>
+              .
             </h1>
             <p className="mx-auto mt-4 max-w-xl text-lg text-sand-600 lg:mx-0">
               Good food is often left behind while someone nearby may need a meal. GoodLoop connects
@@ -43,7 +54,7 @@ export default async function Home() {
               </Link>
               <Link
                 href="/get-involved"
-                className="rounded-full border border-sand-300 bg-white px-6 py-3 text-sm font-medium text-sand-700 hover:bg-sand-100"
+                className="rounded-full border-2 border-sand-300 bg-white px-6 py-3 text-sm font-medium text-sand-700 hover:bg-sand-100"
               >
                 I&apos;m ready to help
               </Link>
@@ -54,13 +65,24 @@ export default async function Home() {
                 Already part of the loop? Log in
               </Link>
             </p>
+
+            <div className="mt-6 flex items-center justify-center gap-2 lg:justify-start">
+              <div className="flex -space-x-2.5">
+                {FACE_SEEDS.map((seed) => (
+                  <AvatarFace key={seed} seed={seed} className="h-9 w-9 rounded-full ring-2 ring-sand-50" />
+                ))}
+              </div>
+              <span className="text-xs text-sand-500">already part of the loop</span>
+            </div>
           </div>
 
           <HeroLoopIllustration className="mx-auto w-full max-w-md lg:max-w-none" />
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-4 pb-16">
+      <section className="relative overflow-hidden">
+        <FoodClusterIllustration className="pointer-events-none absolute top-10 left-1/2 h-auto w-full max-w-3xl -translate-x-1/2 opacity-70" />
+        <div className="relative mx-auto max-w-4xl px-4 pb-16">
         <div className="grid gap-5 sm:grid-cols-3">
           {[
             {
@@ -91,7 +113,7 @@ export default async function Home() {
             <Link
               key={f.title}
               href={f.href}
-              className="group block rounded-2xl border border-sand-200 bg-white p-5 transition-transform hover:-translate-y-1 hover:-rotate-1 hover:shadow-lg hover:shadow-sand-900/5"
+              className="group block rounded-2xl border-2 border-sand-200 bg-white p-5 transition-transform hover:-translate-y-1 hover:-rotate-1 hover:shadow-lg hover:shadow-sand-900/5"
             >
               <span
                 className="flex h-11 w-11 items-center justify-center rounded-xl transition-transform group-hover:rotate-6"
@@ -105,10 +127,11 @@ export default async function Home() {
             </Link>
           ))}
         </div>
+        </div>
       </section>
 
       <section className="mx-auto max-w-4xl px-4 pb-24">
-        <div className="flex items-start gap-4 rounded-2xl border border-sand-200 bg-white p-6">
+        <div className="flex items-start gap-4 rounded-2xl border-2 border-sand-200 bg-white p-6">
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
             <ShieldCheck className="h-5 w-5" strokeWidth={2} />
           </span>

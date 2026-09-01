@@ -6,6 +6,7 @@ import { DonationCard } from "@/components/DonationCard";
 import { StatCard } from "@/components/StatCard";
 import { EmptyState } from "@/components/EmptyState";
 import { EmptyDonationsIllustration } from "@/components/illustrations/EmptyDonations";
+import { AvatarFace } from "@/components/illustrations/AvatarFace";
 import type { Donation } from "@/lib/supabase/types";
 
 export default async function RestaurantHome() {
@@ -23,7 +24,10 @@ export default async function RestaurantHome() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-semibold text-sand-900">Welcome, {profile.name || "there"}</h1>
+        <div className="flex items-center gap-3">
+          <AvatarFace seed={profile.id} className="h-11 w-11 rounded-full ring-2 ring-white shadow-sm" />
+          <h1 className="text-2xl font-semibold text-sand-900">Welcome, {profile.name || "there"}</h1>
+        </div>
         <Link
           href="/restaurant/new"
           className="flex items-center gap-1.5 rounded-full bg-accent-600 px-4 py-2 text-sm font-medium text-white shadow-sm shadow-accent-600/20 hover:bg-accent-700"

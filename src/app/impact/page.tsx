@@ -1,9 +1,11 @@
 import { HandHeart, Package, Bike, MapPinned, CheckCircle2 } from "lucide-react";
 import { DemoBadge } from "@/components/DemoBadge";
 import { ConversionPrompt } from "@/components/ConversionPrompt";
+import { AvatarFace } from "@/components/illustrations/AvatarFace";
 import { DEMO_IMPACT_STATS } from "@/lib/demoData";
 
 const ICONS = [HandHeart, Package, Bike, MapPinned, CheckCircle2];
+const FACE_SEEDS = ["priya", "rahul", "amara", "leo", "nadia", "sam", "kofi", "mira"];
 
 export default function ImpactPage() {
   return (
@@ -18,13 +20,23 @@ export default function ImpactPage() {
           when it&apos;s claimed. These are example numbers showing what the platform tracks, not a live
           production count.
         </p>
+
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-1.5">
+          {FACE_SEEDS.map((seed, i) => (
+            <AvatarFace
+              key={seed}
+              seed={seed}
+              className={`h-11 w-11 rounded-full ring-2 ring-sand-50 ${i % 2 === 0 ? "-rotate-3" : "rotate-3"}`}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         {DEMO_IMPACT_STATS.map((s, i) => {
           const Icon = ICONS[i];
           return (
-            <div key={s.label} className="rounded-2xl border border-sand-200 bg-white p-4 text-center">
+            <div key={s.label} className="rounded-2xl border-2 border-sand-200 bg-white p-4 text-center">
               <span className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
                 <Icon className="h-5 w-5" strokeWidth={2} />
               </span>

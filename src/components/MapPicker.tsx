@@ -50,7 +50,7 @@ export function MapPicker({
   const [center] = useState<[number, number]>(value ? [value.lat, value.lng] : DEFAULT_CENTER);
 
   return (
-    <div className="overflow-hidden rounded-xl border border-sand-300">
+    <div className="overflow-hidden rounded-xl border-2 border-sand-300">
       <MapContainer
         center={center}
         zoom={13}

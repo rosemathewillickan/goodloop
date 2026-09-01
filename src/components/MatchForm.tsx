@@ -94,7 +94,7 @@ export function MatchForm({
         <h2 className="text-sm font-medium text-sand-500">3. Optionally pre-assign a runner</h2>
         <p className="text-xs text-sand-500">Leave blank to let any available volunteer accept it from their dashboard.</p>
         <div className="mt-2 grid gap-3 sm:grid-cols-2">
-          <select name="volunteer_id" className="rounded-xl border border-sand-300 px-3 py-2 text-sm">
+          <select name="volunteer_id" className="rounded-xl border-2 border-sand-300 px-3 py-2 text-sm">
             <option value="">— No pre-assigned volunteer —</option>
             {volunteers.map((v) => (
               <option key={v.id} value={v.id}>
@@ -102,7 +102,7 @@ export function MatchForm({
               </option>
             ))}
           </select>
-          <select name="ngo_id" className="rounded-xl border border-sand-300 px-3 py-2 text-sm">
+          <select name="ngo_id" className="rounded-xl border-2 border-sand-300 px-3 py-2 text-sm">
             <option value="">— No pre-assigned NGO —</option>
             {ngos.map((n) => (
               <option key={n.id} value={n.id}>

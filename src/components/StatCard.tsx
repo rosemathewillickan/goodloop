@@ -30,12 +30,12 @@ export function StatCard({
     return (
       <Link
         href={href}
-        className="block rounded-2xl border border-sand-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md hover:shadow-brand-900/5"
+        className="block rounded-2xl border-2 border-sand-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md hover:shadow-brand-900/5"
       >
         {content}
       </Link>
     );
   }
 
-  return <div className="rounded-2xl border border-sand-200 bg-white p-4">{content}</div>;
+  return <div className="rounded-2xl border-2 border-sand-200 bg-white p-4">{content}</div>;
 }

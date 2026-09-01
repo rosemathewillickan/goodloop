@@ -5,6 +5,7 @@ import { AvailabilityToggle } from "@/components/AvailabilityToggle";
 import { RunCard, type RunWithRelations } from "@/components/RunCard";
 import { EmptyState } from "@/components/EmptyState";
 import { EmptyRunsIllustration } from "@/components/illustrations/EmptyRuns";
+import { AvatarFace } from "@/components/illustrations/AvatarFace";
 
 export default async function VolunteerHome() {
   const profile = await requireRole("volunteer");
@@ -33,7 +34,10 @@ export default async function VolunteerHome() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-semibold text-sand-900">Welcome, {profile.name || "there"}</h1>
+        <div className="flex items-center gap-3">
+          <AvatarFace seed={profile.id} className="h-11 w-11 rounded-full ring-2 ring-white shadow-sm" />
+          <h1 className="text-2xl font-semibold text-sand-900">Welcome, {profile.name || "there"}</h1>
+        </div>
         <AvailabilityToggle available={!!volunteer?.available} />
       </div>
 

@@ -8,7 +8,7 @@ import { DEMO_MAP_RESTAURANTS, DEMO_MAP_ZONES, DEMO_AVAILABLE_RUNNERS } from "@/
 
 const DemoMap = dynamic(() => import("@/components/DemoMap").then((m) => m.DemoMap), {
   ssr: false,
-  loading: () => <div className="h-[360px] animate-pulse rounded-2xl border border-sand-300 bg-sand-100" />,
+  loading: () => <div className="h-[360px] animate-pulse rounded-2xl border-2 border-sand-300 bg-sand-100" />,
 });
 
 export default function DemoMapPage() {
@@ -26,7 +26,7 @@ export default function DemoMapPage() {
       </div>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-3">
-        <div className="flex items-center gap-3 rounded-2xl border border-sand-200 bg-white p-4">
+        <div className="flex items-center gap-3 rounded-2xl border-2 border-sand-200 bg-white p-4">
           <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-role-restaurant-bg text-role-restaurant">
             <Soup className="h-5 w-5" strokeWidth={2} />
           </span>
@@ -37,7 +37,7 @@ export default function DemoMapPage() {
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-2xl border border-sand-200 bg-white p-4">
+        <div className="flex items-center gap-3 rounded-2xl border-2 border-sand-200 bg-white p-4">
           <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-role-ngo-bg text-role-ngo">
             <MapPinned className="h-5 w-5" strokeWidth={2} />
           </span>
@@ -46,7 +46,7 @@ export default function DemoMapPage() {
             <p className="text-xs text-sand-500">{DEMO_MAP_ZONES.reduce((s, z) => s + z.people, 0)} people, approx.</p>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-2xl border border-sand-200 bg-white p-4">
+        <div className="flex items-center gap-3 rounded-2xl border-2 border-sand-200 bg-white p-4">
           <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-role-volunteer-bg text-role-volunteer">
             <Bike className="h-5 w-5" strokeWidth={2} />
           </span>
@@ -66,7 +66,7 @@ export default function DemoMapPage() {
           <h2 className="text-sm font-medium text-sand-500">Surplus listings</h2>
           <div className="mt-2 space-y-2">
             {DEMO_MAP_RESTAURANTS.map((r) => (
-              <div key={r.name} className="flex items-center justify-between rounded-xl border border-sand-200 bg-white px-4 py-2.5 text-sm">
+              <div key={r.name} className="flex items-center justify-between rounded-xl border-2 border-sand-200 bg-white px-4 py-2.5 text-sm">
                 <span className="font-medium text-sand-900">{r.name}</span>
                 <span className="text-sand-500">{r.meals} meals</span>
               </div>
@@ -77,7 +77,7 @@ export default function DemoMapPage() {
           <h2 className="text-sm font-medium text-sand-500">Need zones</h2>
           <div className="mt-2 space-y-2">
             {DEMO_MAP_ZONES.map((z) => (
-              <div key={z.name} className="flex items-center justify-between rounded-xl border border-sand-200 bg-white px-4 py-2.5 text-sm">
+              <div key={z.name} className="flex items-center justify-between rounded-xl border-2 border-sand-200 bg-white px-4 py-2.5 text-sm">
                 <span className="font-medium text-sand-900">{z.name}</span>
                 <span className="text-sand-500">~{z.people} people</span>
               </div>

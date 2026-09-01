@@ -7,7 +7,7 @@ import { createDonation, type FormState } from "@/app/restaurant/actions";
 
 const MapPicker = dynamic(() => import("@/components/MapPicker").then((m) => m.MapPicker), {
   ssr: false,
-  loading: () => <div className="h-[280px] animate-pulse rounded-xl border border-sand-300 bg-sand-100" />,
+  loading: () => <div className="h-[280px] animate-pulse rounded-xl border-2 border-sand-300 bg-sand-100" />,
 });
 
 const initialState: FormState = { error: null };
@@ -34,7 +34,7 @@ export default function NewDonationPage() {
         </div>
       </div>
 
-      <form action={formAction} className="mt-6 space-y-4 rounded-2xl border border-sand-200 bg-white p-5">
+      <form action={formAction} className="mt-6 space-y-4 rounded-2xl border-2 border-sand-200 bg-white p-5">
         <div>
           <label className="block text-sm font-medium text-sand-700" htmlFor="food_type">
             Food type
@@ -44,7 +44,7 @@ export default function NewDonationPage() {
             name="food_type"
             required
             placeholder="e.g. Vegetable biryani + rotis"
-            className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+            className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
           />
         </div>
 
@@ -59,7 +59,7 @@ export default function NewDonationPage() {
               type="number"
               min={1}
               required
-              className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+              className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
             />
           </div>
           <div>
@@ -72,7 +72,7 @@ export default function NewDonationPage() {
               type="datetime-local"
               defaultValue={inHours(2)}
               required
-              className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+              className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
             />
           </div>
         </div>
@@ -85,7 +85,7 @@ export default function NewDonationPage() {
             id="dietary_info"
             name="dietary_info"
             placeholder="e.g. Vegetarian, contains nuts, keep refrigerated"
-            className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+            className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
           />
         </div>
 
@@ -97,7 +97,7 @@ export default function NewDonationPage() {
             id="address_text"
             name="address_text"
             placeholder="e.g. Back entrance, Green Leaf Restaurant"
-            className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+            className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
           />
         </div>
 

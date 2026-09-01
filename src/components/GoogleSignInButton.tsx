@@ -43,7 +43,7 @@ export function GoogleSignInButton() {
       type="button"
       onClick={handleClick}
       disabled={pending}
-      className="flex w-full items-center justify-center gap-2 rounded-full border border-sand-300 bg-white px-4 py-2.5 text-sm font-medium text-sand-700 hover:bg-sand-50 disabled:opacity-60"
+      className="flex w-full items-center justify-center gap-2 rounded-full border-2 border-sand-300 bg-white px-4 py-2.5 text-sm font-medium text-sand-700 hover:bg-sand-50 disabled:opacity-60"
     >
       <GoogleIcon />
       {pending ? "Redirecting..." : "Continue with Google"}

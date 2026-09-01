@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { NeedZoneCard } from "@/components/NeedZoneCard";
 import { EmptyState } from "@/components/EmptyState";
 import { EmptyZonesIllustration } from "@/components/illustrations/EmptyZones";
+import { AvatarFace } from "@/components/illustrations/AvatarFace";
 import type { NeedZone } from "@/lib/supabase/types";
 
 export default async function NgoHome() {
@@ -21,7 +22,10 @@ export default async function NgoHome() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-semibold text-sand-900">Welcome, {profile.name || "there"}</h1>
+        <div className="flex items-center gap-3">
+          <AvatarFace seed={profile.id} className="h-11 w-11 rounded-full ring-2 ring-white shadow-sm" />
+          <h1 className="text-2xl font-semibold text-sand-900">Welcome, {profile.name || "there"}</h1>
+        </div>
         <Link
           href="/need-zones/new"
           className="flex items-center gap-1.5 rounded-full bg-accent-600 px-4 py-2 text-sm font-medium text-white shadow-sm shadow-accent-600/20 hover:bg-accent-700"

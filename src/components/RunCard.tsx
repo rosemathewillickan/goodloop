@@ -10,7 +10,7 @@ export function RunCard({ run, href }: { run: RunWithRelations; href: string }) 
   return (
     <Link
       href={href}
-      className="group flex gap-3 rounded-2xl border border-sand-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-role-volunteer/40 hover:shadow-md hover:shadow-brand-900/5"
+      className="group flex gap-3 rounded-2xl border-2 border-sand-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-role-volunteer/40 hover:shadow-md hover:shadow-brand-900/5"
     >
       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-role-volunteer-bg text-role-volunteer">
         <Soup className="h-5 w-5" strokeWidth={2} />

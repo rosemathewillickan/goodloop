@@ -83,7 +83,7 @@ export default function DemoMatchPage() {
       </div>
 
       {picked && (
-        <div className="mt-6 rounded-2xl border border-sand-200 bg-white p-5">
+        <div className="mt-6 rounded-2xl border-2 border-sand-200 bg-white p-5">
           <p className="font-semibold text-sand-900">
             {correct ? "Exactly right." : "Close — here's how GoodLoop would actually decide:"}
           </p>

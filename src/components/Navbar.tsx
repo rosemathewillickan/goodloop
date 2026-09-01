@@ -21,6 +21,7 @@ import { getCurrentProfile } from "@/lib/profile";
 import { createClient } from "@/lib/supabase/server";
 import { signOut } from "@/app/auth/actions";
 import { ROLE_META } from "@/lib/roles";
+import { AvatarFace } from "@/components/illustrations/AvatarFace";
 import type { Role } from "@/lib/supabase/types";
 
 const PUBLIC_NAV_LINKS = [
@@ -110,15 +111,15 @@ export async function Navbar() {
               </Link>
               {meta && RoleIcon && (
                 <span
-                  className="hidden items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium sm:flex"
+                  className="hidden items-center gap-1.5 rounded-full py-1 pl-1 pr-3 text-xs font-medium sm:flex"
                   style={{ color: meta.color, backgroundColor: meta.bg }}
                 >
-                  <RoleIcon className="h-3.5 w-3.5" strokeWidth={2.5} />
+                  <AvatarFace seed={profile.id} className="h-5 w-5 rounded-full" />
                   {profile.name || meta.label}
                 </span>
               )}
               <form action={signOut}>
-                <button className="rounded-full border border-sand-300 bg-white px-3 py-1.5 text-sm font-medium text-sand-700 hover:bg-sand-100">
+                <button className="rounded-full border-2 border-sand-300 bg-white px-3 py-1.5 text-sm font-medium text-sand-700 hover:bg-sand-100">
                   Log out
                 </button>
               </form>

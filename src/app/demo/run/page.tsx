@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Bike, MapPin, Clock, Soup, CheckCircle2, PartyPopper } from "lucide-react";
 import { DemoBadge } from "@/components/DemoBadge";
 import { ConversionPrompt } from "@/components/ConversionPrompt";
+import { HelpingHandsIllustration } from "@/components/illustrations/HelpingHands";
 import { DEMO_RUN, DEMO_RUN_STEPS } from "@/lib/demoData";
 
 export default function DemoRunPage() {
@@ -15,12 +16,13 @@ export default function DemoRunPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-14">
       <div className="text-center">
+        <HelpingHandsIllustration className="mx-auto h-28 w-auto" />
         <DemoBadge />
         <h1 className="mt-4 text-3xl font-semibold tracking-tight text-sand-900 sm:text-4xl">Take a food run</h1>
         <p className="mx-auto mt-3 max-w-md text-sand-600">You have 45 minutes and a bike. Here&apos;s a run nearby.</p>
       </div>
 
-      <div className="mt-8 rounded-2xl border border-sand-200 bg-white p-6">
+      <div className="mt-8 rounded-2xl border-2 border-sand-200 bg-white p-6">
         <div className="flex items-start gap-3">
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-role-restaurant-bg text-role-restaurant">
             <Soup className="h-5 w-5" strokeWidth={2} />

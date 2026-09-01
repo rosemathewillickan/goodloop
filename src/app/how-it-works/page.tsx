@@ -96,7 +96,7 @@ export default function HowItWorksPage() {
                 <div className={`w-full max-w-sm ${alignRight ? "sm:-rotate-1" : "sm:rotate-1"}`}>
                   <button
                     onClick={() => setOpenIndex(open ? -1 : i)}
-                    className="flex w-full items-start gap-3 rounded-3xl border border-sand-200 bg-white p-4 text-left shadow-sm shadow-sand-900/5 transition-transform hover:-translate-y-0.5"
+                    className="flex w-full items-start gap-3 rounded-3xl border-2 border-sand-200 bg-white p-4 text-left shadow-sm shadow-sand-900/5 transition-transform hover:-translate-y-0.5"
                   >
                     <span
                       className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-sm font-semibold"
@@ -152,7 +152,7 @@ export default function HowItWorksPage() {
         </Link>
         <Link
           href="/explore"
-          className="rounded-full border border-sand-300 bg-white px-6 py-3 text-sm font-medium text-sand-700 hover:bg-sand-100"
+          className="rounded-full border-2 border-sand-300 bg-white px-6 py-3 text-sm font-medium text-sand-700 hover:bg-sand-100"
         >
           See how each role participates
         </Link>

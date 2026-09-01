@@ -56,7 +56,7 @@ export default function DemoHubPage() {
           <Link
             key={d.title}
             href={d.href}
-            className="flex flex-col rounded-2xl border border-sand-200 bg-white p-6 transition-transform hover:-translate-y-1 hover:shadow-lg hover:shadow-sand-900/5"
+            className="flex flex-col rounded-2xl border-2 border-sand-200 bg-white p-6 transition-transform hover:-translate-y-1 hover:shadow-lg hover:shadow-sand-900/5"
           >
             <span
               className="flex h-12 w-12 items-center justify-center rounded-xl"

@@ -44,7 +44,7 @@ function SignupForm() {
             "radial-gradient(circle at 15% 10%, var(--color-berry-100) 0%, transparent 40%), radial-gradient(circle at 90% 90%, var(--color-sky-100) 0%, transparent 40%)",
         }}
       />
-      <div className="rounded-3xl border border-sand-200 bg-white p-8 shadow-sm shadow-sand-900/5">
+      <div className="rounded-3xl border-2 border-sand-200 bg-white p-8 shadow-sm shadow-sand-900/5">
         <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-600 text-white">
           <UserPlus className="h-5 w-5" strokeWidth={2.5} />
         </span>
@@ -111,7 +111,7 @@ function SignupForm() {
               id="name"
               name="name"
               required
-              className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+              className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
             />
           </div>
 
@@ -124,7 +124,7 @@ function SignupForm() {
                 id="organization_name"
                 name="organization_name"
                 required
-                className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+                className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
               />
             </div>
           )}
@@ -137,7 +137,7 @@ function SignupForm() {
               id="phone"
               name="phone"
               type="tel"
-              className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+              className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
             />
           </div>
 
@@ -150,7 +150,7 @@ function SignupForm() {
               name="email"
               type="email"
               required
-              className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+              className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
             />
           </div>
 
@@ -164,7 +164,7 @@ function SignupForm() {
               type="password"
               minLength={6}
               required
-              className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+              className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
             />
           </div>
 

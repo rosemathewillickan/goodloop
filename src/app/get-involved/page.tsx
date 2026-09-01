@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ChefHat, Bike, HeartHandshake, ArrowRight, LogIn } from "lucide-react";
+import { FoodClusterIllustration } from "@/components/illustrations/FoodCluster";
 
 const PATHS = [
   {
@@ -33,7 +34,9 @@ const PATHS = [
 
 export default function GetInvolvedPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-14">
+    <div className="relative overflow-hidden">
+      <FoodClusterIllustration className="pointer-events-none absolute -top-4 left-1/2 h-auto w-full max-w-2xl -translate-x-1/2 opacity-30" />
+      <div className="relative mx-auto max-w-4xl px-4 py-14">
       <div className="text-center">
         <h1 className="text-3xl font-semibold tracking-tight text-sand-900 sm:text-4xl">What can you do?</h1>
         <p className="mx-auto mt-3 max-w-xl text-sand-600">
@@ -46,7 +49,7 @@ export default function GetInvolvedPage() {
         {PATHS.map((p) => (
           <div
             key={p.title}
-            className="group flex flex-col rounded-2xl border border-sand-200 bg-white p-6 text-center transition-transform hover:-translate-y-1 hover:rotate-1 hover:shadow-lg hover:shadow-sand-900/5"
+            className="group flex flex-col rounded-2xl border-2 border-sand-200 bg-white p-6 text-center transition-transform hover:-translate-y-1 hover:rotate-1 hover:shadow-lg hover:shadow-sand-900/5"
           >
             <span
               className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl transition-transform group-hover:-rotate-6"
@@ -78,6 +81,7 @@ export default function GetInvolvedPage() {
           Explore each role first
         </Link>
       </p>
+      </div>
     </div>
   );
 }

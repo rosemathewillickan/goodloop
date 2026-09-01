@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ChefHat, Bike, HeartHandshake, Sparkles, ArrowRight } from "lucide-react";
+import { HelpingHandsIllustration } from "@/components/illustrations/HelpingHands";
 
 const STAKEHOLDERS = [
   {
@@ -46,46 +47,49 @@ const STAKEHOLDERS = [
 
 export default function ExplorePage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-14">
-      <div className="text-center">
-        <h1 className="text-3xl font-semibold tracking-tight text-sand-900 sm:text-4xl">
-          How you can be part of the loop
-        </h1>
-        <p className="mx-auto mt-3 max-w-xl text-sand-600">
-          Browse freely — you don&apos;t need to pick one yet. Each leads to a live example you can try.
+    <div className="relative overflow-hidden">
+      <HelpingHandsIllustration className="pointer-events-none absolute -top-6 left-1/2 h-auto w-80 -translate-x-1/2 opacity-[0.12]" />
+      <div className="relative mx-auto max-w-4xl px-4 py-14">
+        <div className="text-center">
+          <h1 className="text-3xl font-semibold tracking-tight text-sand-900 sm:text-4xl">
+            How you can be part of the loop
+          </h1>
+          <p className="mx-auto mt-3 max-w-xl text-sand-600">
+            Browse freely — you don&apos;t need to pick one yet. Each leads to a live example you can try.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-5 sm:grid-cols-2">
+          {STAKEHOLDERS.map((s) => (
+            <Link
+              key={s.title}
+              href={s.href}
+              className="group flex flex-col rounded-2xl border-2 border-sand-200 bg-white p-6 transition-transform hover:-translate-y-1 hover:rotate-1 hover:shadow-lg hover:shadow-sand-900/5"
+            >
+              <span
+                className="flex h-12 w-12 items-center justify-center rounded-xl transition-transform group-hover:-rotate-6"
+                style={{ color: s.color, backgroundColor: s.bg }}
+              >
+                <s.icon className="h-6 w-6" strokeWidth={2} />
+              </span>
+              <h2 className="mt-4 text-lg font-semibold text-sand-900">{s.title}</h2>
+              <p className="mt-1 text-sm font-medium text-sand-700">{s.question}</p>
+              <p className="mt-1 text-sm text-sand-500">{s.body}</p>
+              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: s.color }}>
+                {s.cta}
+                <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
+              </span>
+            </Link>
+          ))}
+        </div>
+
+        <p className="mt-10 text-center text-sm text-sand-500">
+          Not ready to try a demo?{" "}
+          <Link href="/get-involved" className="font-medium text-brand-700 hover:underline">
+            Skip ahead to get involved
+          </Link>
         </p>
       </div>
-
-      <div className="mt-10 grid gap-5 sm:grid-cols-2">
-        {STAKEHOLDERS.map((s) => (
-          <Link
-            key={s.title}
-            href={s.href}
-            className="group flex flex-col rounded-2xl border border-sand-200 bg-white p-6 transition-transform hover:-translate-y-1 hover:rotate-1 hover:shadow-lg hover:shadow-sand-900/5"
-          >
-            <span
-              className="flex h-12 w-12 items-center justify-center rounded-xl transition-transform group-hover:-rotate-6"
-              style={{ color: s.color, backgroundColor: s.bg }}
-            >
-              <s.icon className="h-6 w-6" strokeWidth={2} />
-            </span>
-            <h2 className="mt-4 text-lg font-semibold text-sand-900">{s.title}</h2>
-            <p className="mt-1 text-sm font-medium text-sand-700">{s.question}</p>
-            <p className="mt-1 text-sm text-sand-500">{s.body}</p>
-            <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: s.color }}>
-              {s.cta}
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
-            </span>
-          </Link>
-        ))}
-      </div>
-
-      <p className="mt-10 text-center text-sm text-sand-500">
-        Not ready to try a demo?{" "}
-        <Link href="/get-involved" className="font-medium text-brand-700 hover:underline">
-          Skip ahead to get involved
-        </Link>
-      </p>
     </div>
   );
 }

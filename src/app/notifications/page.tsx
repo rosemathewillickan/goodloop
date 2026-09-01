@@ -33,7 +33,7 @@ export default async function NotificationsPage() {
           <EmptyState illustration={<EmptyNotificationsIllustration />} title="No notifications yet" />
         </div>
       ) : (
-        <div className="mt-6 divide-y divide-sand-200 overflow-hidden rounded-2xl border border-sand-200 bg-white">
+        <div className="mt-6 divide-y divide-sand-200 overflow-hidden rounded-2xl border-2 border-sand-200 bg-white">
           {notifications.map((n) => (
             <div key={n.id} className={`flex gap-3 p-4 ${n.read_at ? "" : "bg-brand-50/60"}`}>
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700">

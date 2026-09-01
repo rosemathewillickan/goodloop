@@ -14,7 +14,7 @@ export function AvailabilityToggle({ available }: { available: boolean }) {
       className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium shadow-sm transition-colors disabled:opacity-60 ${
         available
           ? "bg-brand-600 text-white shadow-brand-600/20 hover:bg-brand-700"
-          : "border border-sand-300 bg-white text-sand-600 hover:bg-sand-100"
+          : "border-2 border-sand-300 bg-white text-sand-600 hover:bg-sand-100"
       }`}
     >
       <span className={`relative flex h-2 w-2 rounded-full ${available ? "bg-white" : "bg-sand-400"}`}>

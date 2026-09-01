@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { StatusBadge } from "@/components/StatusBadge";
 import { VerifyButtons } from "@/components/VerifyButtons";
 import { EmptyState } from "@/components/EmptyState";
+import { AvatarFace } from "@/components/illustrations/AvatarFace";
 import { ROLE_META } from "@/lib/roles";
 import type { Profile } from "@/lib/supabase/types";
 
@@ -25,18 +26,21 @@ export default async function VerifyPage() {
           <EmptyState icon={BadgeCheck} title="No accounts yet" />
         </div>
       ) : (
-        <div className="mt-6 divide-y divide-sand-200 overflow-hidden rounded-2xl border border-sand-200 bg-white">
+        <div className="mt-6 divide-y divide-sand-200 overflow-hidden rounded-2xl border-2 border-sand-200 bg-white">
           {profiles.map((p) => {
             const meta = ROLE_META[p.role];
             const Icon = meta.icon;
             return (
               <div key={p.id} className="flex flex-wrap items-center justify-between gap-4 p-4">
                 <div className="flex items-center gap-3">
-                  <span
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
-                    style={{ color: meta.color, backgroundColor: meta.bg }}
-                  >
-                    <Icon className="h-4 w-4" strokeWidth={2.25} />
+                  <span className="relative shrink-0">
+                    <AvatarFace seed={p.id} className="h-10 w-10 rounded-full" />
+                    <span
+                      className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full ring-2 ring-white"
+                      style={{ color: meta.color, backgroundColor: meta.bg }}
+                    >
+                      <Icon className="h-3 w-3" strokeWidth={2.5} />
+                    </span>
                   </span>
                   <div>
                     <p className="font-medium text-sand-900">

@@ -20,7 +20,7 @@ export default function LoginPage() {
             "radial-gradient(circle at 20% 15%, var(--color-sun-100) 0%, transparent 40%), radial-gradient(circle at 85% 85%, var(--color-brand-100) 0%, transparent 40%)",
         }}
       />
-      <div className="rounded-3xl border border-sand-200 bg-white p-8 shadow-sm shadow-sand-900/5">
+      <div className="rounded-3xl border-2 border-sand-200 bg-white p-8 shadow-sm shadow-sand-900/5">
         <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-600 text-white">
           <Leaf className="h-5 w-5" strokeWidth={2.5} />
         </span>
@@ -47,7 +47,7 @@ export default function LoginPage() {
               name="email"
               type="email"
               required
-              className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+              className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
             />
           </div>
           <div>
@@ -59,7 +59,7 @@ export default function LoginPage() {
               name="password"
               type="password"
               required
-              className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
+              className="mt-1 w-full rounded-xl border-2 border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
             />
           </div>
 

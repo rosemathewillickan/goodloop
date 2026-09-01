@@ -22,10 +22,10 @@ export function IncidentForm({ runId }: { runId?: string }) {
   }
 
   return (
-    <form action={formAction} className="mt-4 space-y-2 rounded-xl border border-sand-200 bg-sand-50 p-3">
+    <form action={formAction} className="mt-4 space-y-2 rounded-xl border-2 border-sand-200 bg-sand-50 p-3">
       {runId && <input type="hidden" name="run_id" value={runId} />}
       <div className="flex gap-2">
-        <select name="category" className="rounded-xl border border-sand-300 px-2 py-1.5 text-sm">
+        <select name="category" className="rounded-xl border-2 border-sand-300 px-2 py-1.5 text-sm">
           <option value="food_safety">Food safety</option>
           <option value="pickup">Pickup</option>
           <option value="volunteer">Volunteer</option>
@@ -33,7 +33,7 @@ export function IncidentForm({ runId }: { runId?: string }) {
           <option value="misinformation">Misinformation</option>
           <option value="other">Other</option>
         </select>
-        <select name="severity" defaultValue="medium" className="rounded-xl border border-sand-300 px-2 py-1.5 text-sm">
+        <select name="severity" defaultValue="medium" className="rounded-xl border-2 border-sand-300 px-2 py-1.5 text-sm">
           <option value="low">Low</option>
           <option value="medium">Medium</option>
           <option value="high">High</option>
@@ -44,7 +44,7 @@ export function IncidentForm({ runId }: { runId?: string }) {
         required
         placeholder="What happened?"
         rows={2}
-        className="w-full rounded-xl border border-sand-300 px-3 py-1.5 text-sm"
+        className="w-full rounded-xl border-2 border-sand-300 px-3 py-1.5 text-sm"
       />
       {state.error && <p className="text-sm text-red-600">{state.error}</p>}
       <div className="flex gap-2">

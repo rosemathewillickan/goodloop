@@ -15,7 +15,7 @@ export function ResolveIncidentForm({ incidentId }: { incidentId: string }) {
         name="resolution_note"
         placeholder="Resolution note"
         rows={2}
-        className="w-full rounded-xl border border-sand-300 px-3 py-1.5 text-sm"
+        className="w-full rounded-xl border-2 border-sand-300 px-3 py-1.5 text-sm"
       />
       {state.error && <p className="text-sm text-red-600">{state.error}</p>}
       <div className="flex gap-2">

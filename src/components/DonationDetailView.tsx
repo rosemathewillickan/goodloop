@@ -58,7 +58,7 @@ export async function DonationDetailView({ donationId, profile }: { donationId: 
         </div>
       </div>
 
-      <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 rounded-2xl border border-sand-200 bg-white p-4 text-sm">
+      <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 rounded-2xl border-2 border-sand-200 bg-white p-4 text-sm">
         <div className="col-span-2 flex items-center gap-2 text-sand-600">
           <Clock className="h-4 w-4 shrink-0 text-sun-600" strokeWidth={2.25} />
           <span>
