@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChefHat, Bike, HeartHandshake, Leaf, ArrowRight } from "lucide-react";
+import { ChefHat, Bike, HeartHandshake, Leaf, ArrowRight, ShieldCheck } from "lucide-react";
 import { getCurrentProfile, roleHome } from "@/lib/profile";
 import { redirect } from "next/navigation";
 import { HeroLoopIllustration } from "@/components/illustrations/HeroLoop";
@@ -25,36 +25,42 @@ export default async function Home() {
               GoodLoop
             </span>
             <h1 className="mt-5 text-4xl font-semibold tracking-tight text-sand-900 sm:text-5xl">
-              Turn safe surplus food into a meal
-              <span className="text-accent-600"> before it becomes waste.</span>
+              Keep good food
+              <span className="text-accent-600"> going.</span>
             </h1>
             <p className="mx-auto mt-4 max-w-xl text-lg text-sand-600 lg:mx-0">
-              Restaurants list surplus. Verified volunteers and NGOs move it to people who need it.
-              No app, registration, or payment required from the people receiving food.
+              Good food is often left behind while someone nearby may need a meal. GoodLoop connects
+              surplus food with trusted people and places that can move it where it matters.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
               <Link
-                href="/signup"
+                href="/how-it-works"
                 className="flex items-center gap-2 rounded-full bg-accent-600 px-6 py-3 text-sm font-medium text-white shadow-md shadow-accent-600/25 transition-transform hover:-translate-y-0.5 hover:bg-accent-700"
               >
-                Get started
+                Explore GoodLoop
                 <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
               </Link>
               <Link
-                href="/login"
+                href="/get-involved"
                 className="rounded-full border border-sand-300 bg-white px-6 py-3 text-sm font-medium text-sand-700 hover:bg-sand-100"
               >
-                Log in
+                I&apos;m ready to help
               </Link>
             </div>
+            <p className="mt-4 text-sm text-sand-500">
+              No account needed to look around.{" "}
+              <Link href="/login" className="font-medium text-brand-700 hover:underline">
+                Already part of the loop? Log in
+              </Link>
+            </p>
           </div>
 
           <HeroLoopIllustration className="mx-auto w-full max-w-md lg:max-w-none" />
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-4 pb-24">
+      <section className="mx-auto max-w-4xl px-4 pb-16">
         <div className="grid gap-5 sm:grid-cols-3">
           {[
             {
@@ -63,6 +69,7 @@ export default async function Home() {
               body: "List surplus food in under a minute and see it reach someone.",
               color: "var(--color-role-restaurant)",
               bg: "var(--color-role-restaurant-bg)",
+              href: "/demo/donate",
             },
             {
               icon: Bike,
@@ -70,6 +77,7 @@ export default async function Home() {
               body: "Find nearby food runs and complete them with clear pickup/drop steps.",
               color: "var(--color-role-volunteer)",
               bg: "var(--color-role-volunteer-bg)",
+              href: "/demo/run",
             },
             {
               icon: HeartHandshake,
@@ -77,11 +85,13 @@ export default async function Home() {
               body: "Verify recurring need zones and coordinate larger distributions.",
               color: "var(--color-role-ngo)",
               bg: "var(--color-role-ngo-bg)",
+              href: "/explore",
             },
           ].map((f) => (
-            <div
+            <Link
               key={f.title}
-              className="rounded-2xl border border-sand-200 bg-white p-5 transition-transform hover:-translate-y-1 hover:shadow-lg hover:shadow-sand-900/5"
+              href={f.href}
+              className="block rounded-2xl border border-sand-200 bg-white p-5 transition-transform hover:-translate-y-1 hover:shadow-lg hover:shadow-sand-900/5"
             >
               <span
                 className="flex h-11 w-11 items-center justify-center rounded-xl"
@@ -91,8 +101,25 @@ export default async function Home() {
               </span>
               <h3 className="mt-4 font-semibold text-sand-900">{f.title}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-sand-600">{f.body}</p>
-            </div>
+              <span className="mt-3 inline-block text-sm font-medium text-brand-700">Try it out →</span>
+            </Link>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-4xl px-4 pb-24">
+        <div className="flex items-start gap-4 rounded-2xl border border-sand-200 bg-white p-6">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+            <ShieldCheck className="h-5 w-5" strokeWidth={2} />
+          </span>
+          <div>
+            <h3 className="font-semibold text-sand-900">Built around dignity, not data collection</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-sand-600">
+              GoodLoop is designed so that people who need food don&apos;t need to use the app to receive it.
+              No registration, no proving circumstances, no unnecessary personal information — the system
+              comes to them, not the other way around.
+            </p>
+          </div>
         </div>
       </section>
     </div>

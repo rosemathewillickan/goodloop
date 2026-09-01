@@ -1,7 +1,8 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { Suspense, useActionState, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { ChefHat, Bike, HeartHandshake, UserPlus } from "lucide-react";
 import { signUp, type FormState } from "@/app/auth/actions";
 import { ROLE_META } from "@/lib/roles";
@@ -15,9 +16,22 @@ const ROLES: { value: Role; label: string; hint: string; icon: typeof ChefHat }[
   { value: "ngo", label: "NGO / Community partner", hint: "Verify need, coordinate distribution", icon: HeartHandshake },
 ];
 
+function roleFromParam(value: string | null): Role {
+  return value === "volunteer" || value === "ngo" || value === "restaurant" ? value : "restaurant";
+}
+
 export default function SignupPage() {
+  return (
+    <Suspense>
+      <SignupForm />
+    </Suspense>
+  );
+}
+
+function SignupForm() {
+  const searchParams = useSearchParams();
   const [state, formAction, pending] = useActionState(signUp, initialState);
-  const [role, setRole] = useState<Role>("restaurant");
+  const [role, setRole] = useState<Role>(() => roleFromParam(searchParams.get("role")));
   const needsOrg = role === "restaurant" || role === "ngo";
 
   return (

@@ -13,12 +13,21 @@ import {
   Link2,
   Flag,
   Bell,
+  Waypoints,
+  Compass,
+  HandHeart,
 } from "lucide-react";
 import { getCurrentProfile } from "@/lib/profile";
 import { createClient } from "@/lib/supabase/server";
 import { signOut } from "@/app/auth/actions";
 import { ROLE_META } from "@/lib/roles";
 import type { Role } from "@/lib/supabase/types";
+
+const PUBLIC_NAV_LINKS = [
+  { href: "/how-it-works", label: "How it works", icon: Waypoints },
+  { href: "/explore", label: "Explore", icon: Compass },
+  { href: "/impact", label: "Impact", icon: HandHeart },
+];
 
 const NAV_LINKS: Record<Role, { href: string; label: string; icon: typeof Home }[]> = {
   restaurant: [
@@ -71,20 +80,18 @@ export async function Navbar() {
           <span className="text-lg font-semibold tracking-tight text-brand-800">GoodLoop</span>
         </Link>
 
-        {profile && (
-          <nav className="hidden items-center gap-1 sm:flex">
-            {NAV_LINKS[profile.role].map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium text-sand-600 hover:bg-sand-100 hover:text-sand-900"
-              >
-                <link.icon className="h-4 w-4" strokeWidth={2.25} />
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        )}
+        <nav className="hidden items-center gap-1 sm:flex">
+          {(profile ? NAV_LINKS[profile.role] : PUBLIC_NAV_LINKS).map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium text-sand-600 hover:bg-sand-100 hover:text-sand-900"
+            >
+              <link.icon className="h-4 w-4" strokeWidth={2.25} />
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
         <div className="flex items-center gap-2">
           {profile ? (
@@ -122,30 +129,28 @@ export async function Navbar() {
                 Log in
               </Link>
               <Link
-                href="/signup"
+                href="/get-involved"
                 className="rounded-full bg-accent-600 px-4 py-2 text-sm font-medium text-white shadow-sm shadow-accent-600/20 hover:bg-accent-700"
               >
-                Sign up
+                Get involved
               </Link>
             </>
           )}
         </div>
       </div>
 
-      {profile && (
-        <nav className="flex items-center gap-1 overflow-x-auto border-t border-sand-200/70 px-4 py-1.5 sm:hidden">
-          {NAV_LINKS[profile.role].map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1 text-sm text-sand-600 hover:bg-sand-100"
-            >
-              <link.icon className="h-3.5 w-3.5" strokeWidth={2.25} />
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      )}
+      <nav className="flex items-center gap-1 overflow-x-auto border-t border-sand-200/70 px-4 py-1.5 sm:hidden">
+        {(profile ? NAV_LINKS[profile.role] : PUBLIC_NAV_LINKS).map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1 text-sm text-sand-600 hover:bg-sand-100"
+          >
+            <link.icon className="h-3.5 w-3.5" strokeWidth={2.25} />
+            {link.label}
+          </Link>
+        ))}
+      </nav>
     </header>
   );
 }
