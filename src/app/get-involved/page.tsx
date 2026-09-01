@@ -44,9 +44,12 @@ export default function GetInvolvedPage() {
 
       <div className="mt-10 grid gap-5 sm:grid-cols-3">
         {PATHS.map((p) => (
-          <div key={p.title} className="flex flex-col rounded-2xl border border-sand-200 bg-white p-6 text-center">
+          <div
+            key={p.title}
+            className="group flex flex-col rounded-2xl border border-sand-200 bg-white p-6 text-center transition-transform hover:-translate-y-1 hover:rotate-1 hover:shadow-lg hover:shadow-sand-900/5"
+          >
             <span
-              className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl"
+              className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl transition-transform group-hover:-rotate-6"
               style={{ color: p.color, backgroundColor: p.bg }}
             >
               <p.icon className="h-6 w-6" strokeWidth={2} />

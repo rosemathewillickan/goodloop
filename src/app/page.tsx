@@ -91,10 +91,10 @@ export default async function Home() {
             <Link
               key={f.title}
               href={f.href}
-              className="block rounded-2xl border border-sand-200 bg-white p-5 transition-transform hover:-translate-y-1 hover:shadow-lg hover:shadow-sand-900/5"
+              className="group block rounded-2xl border border-sand-200 bg-white p-5 transition-transform hover:-translate-y-1 hover:-rotate-1 hover:shadow-lg hover:shadow-sand-900/5"
             >
               <span
-                className="flex h-11 w-11 items-center justify-center rounded-xl"
+                className="flex h-11 w-11 items-center justify-center rounded-xl transition-transform group-hover:rotate-6"
                 style={{ color: f.color, backgroundColor: f.bg }}
               >
                 <f.icon className="h-5 w-5" strokeWidth={2} />

@@ -61,10 +61,10 @@ export default function ExplorePage() {
           <Link
             key={s.title}
             href={s.href}
-            className="flex flex-col rounded-2xl border border-sand-200 bg-white p-6 transition-transform hover:-translate-y-1 hover:shadow-lg hover:shadow-sand-900/5"
+            className="group flex flex-col rounded-2xl border border-sand-200 bg-white p-6 transition-transform hover:-translate-y-1 hover:rotate-1 hover:shadow-lg hover:shadow-sand-900/5"
           >
             <span
-              className="flex h-12 w-12 items-center justify-center rounded-xl"
+              className="flex h-12 w-12 items-center justify-center rounded-xl transition-transform group-hover:-rotate-6"
               style={{ color: s.color, backgroundColor: s.bg }}
             >
               <s.icon className="h-6 w-6" strokeWidth={2} />

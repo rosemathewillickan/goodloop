@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Soup, Waypoints, Bike, MapPinned, HandHeart, ChevronDown, ArrowRight } from "lucide-react";
+import { Soup, Waypoints, Bike, MapPinned, HandHeart, ChevronDown, ArrowRight, PartyPopper } from "lucide-react";
+import { WindingRoad } from "@/components/illustrations/WindingRoad";
+import { StartFlagIllustration } from "@/components/illustrations/StartFlag";
 
 const STAGES = [
   {
@@ -70,58 +72,75 @@ export default function HowItWorksPage() {
       <div className="text-center">
         <h1 className="text-3xl font-semibold tracking-tight text-sand-900 sm:text-4xl">How GoodLoop works</h1>
         <p className="mx-auto mt-3 max-w-xl text-sand-600">
-          Tap a stage to see how it works, with a real example moving through the system.
+          Follow the loop, stop by stop — tap a stage for the full story, with a real example moving through
+          the system.
         </p>
       </div>
 
-      <ol className="mt-10 space-y-3">
-        {STAGES.map((stage, i) => {
-          const open = openIndex === i;
-          return (
-            <li key={stage.n} className="overflow-hidden rounded-2xl border border-sand-200 bg-white">
-              <button
-                onClick={() => setOpenIndex(open ? -1 : i)}
-                className="flex w-full items-center gap-4 px-5 py-4 text-left"
-              >
-                <span
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm font-semibold"
-                  style={{ color: stage.color, backgroundColor: stage.bg }}
-                >
-                  <stage.icon className="h-5 w-5" strokeWidth={2} />
-                </span>
-                <span className="flex-1">
-                  <span className="block text-xs font-medium text-sand-400">STAGE {stage.n}</span>
-                  <span className="block font-semibold text-sand-900">{stage.title}</span>
-                  {!open && <span className="block text-sm text-sand-500">{stage.summary}</span>}
-                </span>
-                <ChevronDown
-                  className={`h-4 w-4 shrink-0 text-sand-400 transition-transform ${open ? "rotate-180" : ""}`}
-                  strokeWidth={2.25}
-                />
-              </button>
+      <div className="relative mt-6">
+        <WindingRoad className="pointer-events-none absolute inset-0 h-full w-full" />
 
-              {open && (
-                <div className="px-5 pb-5 pl-[76px]">
-                  <div className="flex flex-wrap gap-2">
-                    {stage.example.map((e) => (
-                      <span
-                        key={e}
-                        className="rounded-full px-3 py-1 text-xs font-medium"
-                        style={{ color: stage.color, backgroundColor: stage.bg }}
-                      >
-                        {e}
+        <div className="relative flex flex-col gap-6 py-6">
+          <div className="flex items-center gap-2 pl-2 sm:pl-6">
+            <StartFlagIllustration className="h-10 w-10" />
+            <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-sand-500 shadow-sm">
+              Start
+            </span>
+          </div>
+
+          {STAGES.map((stage, i) => {
+            const open = openIndex === i;
+            const alignRight = i % 2 === 1;
+            return (
+              <div key={stage.n} className={`flex ${alignRight ? "justify-end" : "justify-start"} px-1 sm:px-4`}>
+                <div className={`w-full max-w-sm ${alignRight ? "sm:-rotate-1" : "sm:rotate-1"}`}>
+                  <button
+                    onClick={() => setOpenIndex(open ? -1 : i)}
+                    className="flex w-full items-start gap-3 rounded-3xl border border-sand-200 bg-white p-4 text-left shadow-sm shadow-sand-900/5 transition-transform hover:-translate-y-0.5"
+                  >
+                    <span
+                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-sm font-semibold"
+                      style={{ color: stage.color, backgroundColor: stage.bg }}
+                    >
+                      <stage.icon className="h-6 w-6" strokeWidth={2} />
+                    </span>
+                    <span className="flex-1">
+                      <span className="block text-xs font-semibold tracking-wide" style={{ color: stage.color }}>
+                        STOP {stage.n}
                       </span>
-                    ))}
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-sand-600">{stage.detail}</p>
+                      <span className="block font-semibold text-sand-900">{stage.title}</span>
+                      <span className="mt-1.5 flex flex-wrap gap-1.5">
+                        {stage.example.map((e) => (
+                          <span
+                            key={e}
+                            className="rounded-full px-2 py-0.5 text-xs font-medium"
+                            style={{ color: stage.color, backgroundColor: stage.bg }}
+                          >
+                            {e}
+                          </span>
+                        ))}
+                      </span>
+                      {open && <span className="mt-2 block text-sm leading-relaxed text-sand-600">{stage.detail}</span>}
+                    </span>
+                    <ChevronDown
+                      className={`mt-1 h-4 w-4 shrink-0 text-sand-400 transition-transform ${open ? "rotate-180" : ""}`}
+                      strokeWidth={2.25}
+                    />
+                  </button>
                 </div>
-              )}
+              </div>
+            );
+          })}
 
-              {i < STAGES.length - 1 && <div className="ml-[44px] h-3 w-px bg-sand-200" />}
-            </li>
-          );
-        })}
-      </ol>
+          <div className="flex justify-center px-1 sm:px-4">
+            <div className="flex max-w-sm flex-col items-center gap-1.5 rounded-3xl border border-accent-200 bg-accent-50 p-6 text-center shadow-sm">
+              <PartyPopper className="h-6 w-6 text-accent-600" strokeWidth={2} />
+              <p className="font-semibold text-sand-900">That&apos;s the loop, closed.</p>
+              <p className="text-sm text-sand-600">Surplus food became a meal — and the cycle starts again.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div className="mt-10 flex flex-wrap justify-center gap-3">
         <Link
