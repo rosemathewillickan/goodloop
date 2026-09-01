@@ -59,12 +59,7 @@ export default async function Home() {
                 I&apos;m ready to help
               </Link>
             </div>
-            <p className="mt-4 text-sm text-sand-500">
-              No account needed to look around.{" "}
-              <Link href="/login" className="font-medium text-brand-700 hover:underline">
-                Already part of the loop? Log in
-              </Link>
-            </p>
+            <p className="mt-4 text-sm text-sand-500">No account needed to look around.</p>
 
             <div className="mt-6 flex items-center justify-center gap-2 lg:justify-start">
               <div className="flex -space-x-2.5">

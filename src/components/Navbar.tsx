@@ -125,17 +125,12 @@ export async function Navbar() {
               </form>
             </>
           ) : (
-            <>
-              <Link href="/login" className="text-sm font-medium text-sand-600 hover:text-sand-900">
-                Log in
-              </Link>
-              <Link
-                href="/get-involved"
-                className="rounded-full bg-accent-600 px-4 py-2 text-sm font-medium text-white shadow-sm shadow-accent-600/20 hover:bg-accent-700"
-              >
-                Get involved
-              </Link>
-            </>
+            <Link
+              href="/get-involved"
+              className="rounded-full bg-accent-600 px-4 py-2 text-sm font-medium text-white shadow-sm shadow-accent-600/20 hover:bg-accent-700"
+            >
+              Get involved
+            </Link>
           )}
         </div>
       </div>
