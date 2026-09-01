@@ -36,8 +36,9 @@ function ActionForm({
 
 export function RunActions({ run, isMine }: { run: FoodRun; isMine: boolean }) {
   const [showFail, setShowFail] = useState(false);
-  const primaryBtn = "rounded-md bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800 disabled:opacity-60";
-  const dangerBtn = "rounded-md border border-red-300 px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-50 disabled:opacity-60";
+  const primaryBtn =
+    "rounded-full bg-accent-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm shadow-accent-600/20 hover:bg-accent-700 disabled:opacity-60";
+  const dangerBtn = "rounded-full border border-red-300 px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-50 disabled:opacity-60";
 
   if (!isMine && run.status === "assigned" && !run.volunteer_id && !run.ngo_id) {
     return <ActionForm action={acceptRun} runId={run.id} label="Accept this run" pendingLabel="Accepting..." className={primaryBtn} />;
@@ -64,7 +65,7 @@ export function RunActions({ run, isMine }: { run: FoodRun; isMine: boolean }) {
               min={1}
               required
               placeholder="Meals distributed"
-              className="w-40 rounded-md border border-stone-300 px-2 py-1.5 text-sm"
+              className="w-40 rounded-xl border border-sand-300 px-2 py-1.5 text-sm"
             />
           }
         />
@@ -82,7 +83,7 @@ export function RunActions({ run, isMine }: { run: FoodRun; isMine: boolean }) {
                 name="reason"
                 required
                 placeholder="Why can't this run be completed?"
-                className="w-64 rounded-md border border-stone-300 px-2 py-1.5 text-sm"
+                className="w-64 rounded-xl border border-sand-300 px-2 py-1.5 text-sm"
               />
             }
           />

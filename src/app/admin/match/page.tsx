@@ -1,3 +1,4 @@
+import { Link2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { MatchForm } from "@/components/MatchForm";
 import type { Donation, NeedZone, Profile } from "@/lib/supabase/types";
@@ -32,8 +33,15 @@ export default async function MatchPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-stone-900">Manual matching</h1>
-      <p className="mt-1 text-sm text-stone-500">Match an available donation to a verified need zone.</p>
+      <div className="flex items-center gap-3">
+        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-role-admin-bg text-role-admin">
+          <Link2 className="h-5 w-5" strokeWidth={2} />
+        </span>
+        <div>
+          <h1 className="text-2xl font-semibold text-sand-900">Manual matching</h1>
+          <p className="text-sm text-sand-500">Match an available donation to a verified need zone.</p>
+        </div>
+      </div>
       <MatchForm donations={donations ?? []} zones={zones ?? []} volunteers={volunteers} ngos={ngoProfiles ?? []} />
     </div>
   );

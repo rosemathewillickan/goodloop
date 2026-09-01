@@ -1,6 +1,8 @@
 import { requireRole } from "@/lib/profile";
 import { createClient } from "@/lib/supabase/server";
 import { RunCard, type RunWithRelations } from "@/components/RunCard";
+import { EmptyState } from "@/components/EmptyState";
+import { EmptyRunsIllustration } from "@/components/illustrations/EmptyRuns";
 
 export default async function NgoRunsPage() {
   const profile = await requireRole("ngo");
@@ -25,11 +27,11 @@ export default async function NgoRunsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-stone-900">Runs</h1>
+      <h1 className="text-2xl font-semibold text-sand-900">Runs</h1>
 
       {myRuns && myRuns.length > 0 && (
         <>
-          <h2 className="mt-6 text-sm font-medium text-stone-500">Your runs</h2>
+          <h2 className="mt-6 text-sm font-medium text-sand-500">Your runs</h2>
           <div className="mt-3 grid gap-3 sm:grid-cols-2">
             {myRuns.map((r) => (
               <RunCard key={r.id} run={r} href={`/ngo/runs/${r.id}`} />
@@ -38,9 +40,11 @@ export default async function NgoRunsPage() {
         </>
       )}
 
-      <h2 className="mt-8 text-sm font-medium text-stone-500">Open runs you can coordinate</h2>
+      <h2 className="mt-8 text-sm font-medium text-sand-500">Open runs you can coordinate</h2>
       {!openRuns || openRuns.length === 0 ? (
-        <p className="mt-2 text-sm text-stone-500">Nothing open right now.</p>
+        <div className="mt-3">
+          <EmptyState illustration={<EmptyRunsIllustration />} title="Nothing open right now" />
+        </div>
       ) : (
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
           {openRuns.map((r) => (

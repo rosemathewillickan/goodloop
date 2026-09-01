@@ -1,28 +1,47 @@
-const STYLES: Record<string, string> = {
-  available: "bg-sky-100 text-sky-800",
-  assigned: "bg-amber-100 text-amber-800",
-  picked_up: "bg-amber-100 text-amber-800",
-  distributed: "bg-emerald-100 text-emerald-800",
-  expired: "bg-stone-200 text-stone-700",
-  cancelled: "bg-stone-200 text-stone-700",
-  failed: "bg-red-100 text-red-800",
-  pending_verification: "bg-amber-100 text-amber-800",
-  pending: "bg-amber-100 text-amber-800",
-  active: "bg-emerald-100 text-emerald-800",
-  verified: "bg-emerald-100 text-emerald-800",
-  rejected: "bg-red-100 text-red-800",
-  open: "bg-sky-100 text-sky-800",
-  resolved: "bg-emerald-100 text-emerald-800",
-  escalated: "bg-red-100 text-red-800",
-  low: "bg-stone-100 text-stone-700",
-  medium: "bg-amber-100 text-amber-800",
-  high: "bg-red-100 text-red-800",
+import {
+  PackageOpen,
+  Link2,
+  PackageCheck,
+  CheckCircle2,
+  AlarmClockOff,
+  XCircle,
+  Clock,
+  BadgeCheck,
+  Flag,
+  AlertTriangle,
+  Circle,
+  type LucideIcon,
+} from "lucide-react";
+
+const CONFIG: Record<string, { classes: string; icon?: LucideIcon }> = {
+  available: { classes: "bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200", icon: PackageOpen },
+  assigned: { classes: "bg-sun-100 text-amber-700 ring-1 ring-inset ring-sun-300", icon: Link2 },
+  picked_up: { classes: "bg-sun-100 text-amber-700 ring-1 ring-inset ring-sun-300", icon: PackageCheck },
+  distributed: { classes: "bg-brand-50 text-brand-700 ring-1 ring-inset ring-brand-200", icon: CheckCircle2 },
+  expired: { classes: "bg-sand-100 text-sand-600 ring-1 ring-inset ring-sand-200", icon: AlarmClockOff },
+  cancelled: { classes: "bg-sand-100 text-sand-600 ring-1 ring-inset ring-sand-200", icon: XCircle },
+  failed: { classes: "bg-red-50 text-red-700 ring-1 ring-inset ring-red-200", icon: XCircle },
+  pending_verification: { classes: "bg-sun-100 text-amber-700 ring-1 ring-inset ring-sun-300", icon: Clock },
+  pending: { classes: "bg-sun-100 text-amber-700 ring-1 ring-inset ring-sun-300", icon: Clock },
+  active: { classes: "bg-brand-50 text-brand-700 ring-1 ring-inset ring-brand-200", icon: BadgeCheck },
+  verified: { classes: "bg-brand-50 text-brand-700 ring-1 ring-inset ring-brand-200", icon: BadgeCheck },
+  rejected: { classes: "bg-red-50 text-red-700 ring-1 ring-inset ring-red-200", icon: XCircle },
+  open: { classes: "bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200", icon: Flag },
+  resolved: { classes: "bg-brand-50 text-brand-700 ring-1 ring-inset ring-brand-200", icon: CheckCircle2 },
+  escalated: { classes: "bg-red-50 text-red-700 ring-1 ring-inset ring-red-200", icon: AlertTriangle },
+  low: { classes: "bg-sand-100 text-sand-600 ring-1 ring-inset ring-sand-200", icon: Circle },
+  medium: { classes: "bg-sun-100 text-amber-700 ring-1 ring-inset ring-sun-300", icon: Circle },
+  high: { classes: "bg-red-50 text-red-700 ring-1 ring-inset ring-red-200", icon: Circle },
 };
 
 export function StatusBadge({ status }: { status: string }) {
-  const style = STYLES[status] ?? "bg-stone-100 text-stone-700";
+  const config = CONFIG[status] ?? { classes: "bg-sand-100 text-sand-600 ring-1 ring-inset ring-sand-200" };
+  const Icon = config.icon;
   return (
-    <span className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-medium ${style}`}>
+    <span
+      className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium capitalize ${config.classes}`}
+    >
+      {Icon && <Icon className="h-3 w-3" strokeWidth={2.5} />}
       {status.replace(/_/g, " ")}
     </span>
   );

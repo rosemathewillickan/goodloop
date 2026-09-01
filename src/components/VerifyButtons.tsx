@@ -17,7 +17,7 @@ export function VerifyButtons({ profileId }: { profileId: string }) {
           <button
             type="submit"
             disabled={pending}
-            className="rounded-md bg-emerald-700 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-800 disabled:opacity-60"
+            className="rounded-full bg-brand-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-60"
           >
             Verify
           </button>
@@ -28,7 +28,7 @@ export function VerifyButtons({ profileId }: { profileId: string }) {
           <button
             type="submit"
             disabled={pending}
-            className="rounded-md border border-red-300 px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
+            className="rounded-full border border-red-300 px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
           >
             Reject
           </button>

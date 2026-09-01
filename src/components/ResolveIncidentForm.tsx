@@ -15,7 +15,7 @@ export function ResolveIncidentForm({ incidentId }: { incidentId: string }) {
         name="resolution_note"
         placeholder="Resolution note"
         rows={2}
-        className="w-full rounded-md border border-stone-300 px-3 py-1.5 text-sm"
+        className="w-full rounded-xl border border-sand-300 px-3 py-1.5 text-sm"
       />
       {state.error && <p className="text-sm text-red-600">{state.error}</p>}
       <div className="flex gap-2">
@@ -24,7 +24,7 @@ export function ResolveIncidentForm({ incidentId }: { incidentId: string }) {
           name="escalate"
           value="false"
           disabled={pending}
-          className="rounded-md bg-emerald-700 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-800 disabled:opacity-60"
+          className="rounded-full bg-brand-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-60"
         >
           Mark resolved
         </button>
@@ -33,7 +33,7 @@ export function ResolveIncidentForm({ incidentId }: { incidentId: string }) {
           name="escalate"
           value="true"
           disabled={pending}
-          className="rounded-md border border-red-300 px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
+          className="rounded-full border border-red-300 px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
         >
           Escalate
         </button>

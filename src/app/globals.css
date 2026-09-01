@@ -2,8 +2,8 @@
 @import "leaflet/dist/leaflet.css";
 
 :root {
-  --background: #fafaf9;
-  --foreground: #1c1917;
+  --background: #fffaf0;
+  --foreground: #1c2b21;
 }
 
 @theme inline {
@@ -11,6 +11,72 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Brand: fresh, happy leaf green. */
+  --color-brand-50: #eefcf3;
+  --color-brand-100: #d3f8e1;
+  --color-brand-200: #a7f0c4;
+  --color-brand-300: #6fe0a0;
+  --color-brand-400: #3ec97e;
+  --color-brand-500: #1fae63;
+  --color-brand-600: #148f50;
+  --color-brand-700: #107140;
+  --color-brand-800: #0e5a34;
+  --color-brand-900: #0a3f25;
+
+  /* Accent: sunny coral/tangerine, the app's single loudest color — CTAs + urgency. */
+  --color-accent-50: #fff1ec;
+  --color-accent-100: #ffe0d3;
+  --color-accent-200: #ffc2a8;
+  --color-accent-300: #ffab85;
+  --color-accent-500: #ff7a4d;
+  --color-accent-600: #fa5f2e;
+  --color-accent-700: #de471c;
+
+  /* Sunshine: decorative second accent — illustrations, highlights, sparkle. */
+  --color-sun-100: #fff3c4;
+  --color-sun-200: #ffe789;
+  --color-sun-300: #ffdc5c;
+  --color-sun-500: #ffc93c;
+  --color-sun-600: #f5a623;
+
+  /* Berry: decorative third accent — NGO/community warmth, illustrations. */
+  --color-berry-50: #fdf2fb;
+  --color-berry-100: #fbe1f6;
+  --color-berry-300: #f2a8e6;
+  --color-berry-500: #dd57c9;
+  --color-berry-600: #c93fb3;
+  --color-berry-700: #a52e92;
+
+  /* Sky: decorative fourth accent — volunteer/motion, illustrations. */
+  --color-sky-50: #eef9ff;
+  --color-sky-100: #d7f1ff;
+  --color-sky-300: #7dd4ff;
+  --color-sky-500: #22b1f0;
+  --color-sky-600: #0d95d6;
+  --color-sky-700: #0c76ad;
+
+  /* Warm neutral scale for the app chrome. */
+  --color-sand-50: #fffaf0;
+  --color-sand-100: #fbf1de;
+  --color-sand-200: #f2e2c2;
+  --color-sand-300: #e3cd9c;
+  --color-sand-400: #bfa877;
+  --color-sand-500: #8f7d63;
+  --color-sand-600: #6b5c48;
+  --color-sand-700: #4d4133;
+  --color-sand-800: #322922;
+  --color-sand-900: #1f1914;
+
+  /* One reserved accent per role — badges, nav highlight, icons, illustrations. */
+  --color-role-restaurant: #107140;
+  --color-role-restaurant-bg: #eefcf3;
+  --color-role-volunteer: #0c76ad;
+  --color-role-volunteer-bg: #eef9ff;
+  --color-role-ngo: #a52e92;
+  --color-role-ngo-bg: #fdf2fb;
+  --color-role-admin: #47556a;
+  --color-role-admin-bg: #eef1f5;
 }
 
 body {
@@ -21,4 +87,9 @@ body {
 
 .leaflet-container {
   z-index: 0;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--color-sand-50);
 }

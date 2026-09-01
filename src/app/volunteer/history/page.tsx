@@ -1,6 +1,8 @@
 import { requireRole } from "@/lib/profile";
 import { createClient } from "@/lib/supabase/server";
 import { RunCard, type RunWithRelations } from "@/components/RunCard";
+import { EmptyState } from "@/components/EmptyState";
+import { EmptyRunsIllustration } from "@/components/illustrations/EmptyRuns";
 
 export default async function VolunteerHistoryPage() {
   const profile = await requireRole("volunteer");
@@ -16,13 +18,18 @@ export default async function VolunteerHistoryPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-stone-900">Run history</h1>
-      {(!runs || runs.length === 0) && <p className="mt-4 text-sm text-stone-500">No completed runs yet.</p>}
-      <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        {(runs ?? []).map((r) => (
-          <RunCard key={r.id} run={r} href={`/volunteer/runs/${r.id}`} />
-        ))}
-      </div>
+      <h1 className="text-2xl font-semibold text-sand-900">Run history</h1>
+      {!runs || runs.length === 0 ? (
+        <div className="mt-4">
+          <EmptyState illustration={<EmptyRunsIllustration />} title="No completed runs yet" hint="Runs you finish will show up here." />
+        </div>
+      ) : (
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          {runs.map((r) => (
+            <RunCard key={r.id} run={r} href={`/volunteer/runs/${r.id}`} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

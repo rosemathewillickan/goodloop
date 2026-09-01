@@ -2,11 +2,12 @@
 
 import { useActionState, useState } from "react";
 import dynamic from "next/dynamic";
+import { PackagePlus } from "lucide-react";
 import { createDonation, type FormState } from "@/app/restaurant/actions";
 
 const MapPicker = dynamic(() => import("@/components/MapPicker").then((m) => m.MapPicker), {
   ssr: false,
-  loading: () => <div className="h-[280px] animate-pulse rounded-md border border-stone-300 bg-stone-100" />,
+  loading: () => <div className="h-[280px] animate-pulse rounded-xl border border-sand-300 bg-sand-100" />,
 });
 
 const initialState: FormState = { error: null };
@@ -23,12 +24,19 @@ export default function NewDonationPage() {
 
   return (
     <div className="max-w-xl">
-      <h1 className="text-2xl font-semibold text-stone-900">Donate surplus food</h1>
-      <p className="mt-1 text-sm text-stone-500">Takes about a minute. This becomes visible to operators once submitted.</p>
-
-      <form action={formAction} className="mt-6 space-y-4">
+      <div className="flex items-center gap-3">
+        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-role-restaurant-bg text-role-restaurant">
+          <PackagePlus className="h-5 w-5" strokeWidth={2} />
+        </span>
         <div>
-          <label className="block text-sm font-medium text-stone-700" htmlFor="food_type">
+          <h1 className="text-2xl font-semibold text-sand-900">Donate surplus food</h1>
+          <p className="text-sm text-sand-500">Takes about a minute. This becomes visible to operators once submitted.</p>
+        </div>
+      </div>
+
+      <form action={formAction} className="mt-6 space-y-4 rounded-2xl border border-sand-200 bg-white p-5">
+        <div>
+          <label className="block text-sm font-medium text-sand-700" htmlFor="food_type">
             Food type
           </label>
           <input
@@ -36,13 +44,13 @@ export default function NewDonationPage() {
             name="food_type"
             required
             placeholder="e.g. Vegetable biryani + rotis"
-            className="mt-1 w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+            className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-stone-700" htmlFor="quantity_meals">
+            <label className="block text-sm font-medium text-sand-700" htmlFor="quantity_meals">
               Approx. meals
             </label>
             <input
@@ -51,11 +59,11 @@ export default function NewDonationPage() {
               type="number"
               min={1}
               required
-              className="mt-1 w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+              className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-stone-700" htmlFor="pickup_deadline">
+            <label className="block text-sm font-medium text-sand-700" htmlFor="pickup_deadline">
               Pickup deadline
             </label>
             <input
@@ -64,39 +72,39 @@ export default function NewDonationPage() {
               type="datetime-local"
               defaultValue={inHours(2)}
               required
-              className="mt-1 w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+              className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-stone-700" htmlFor="dietary_info">
+          <label className="block text-sm font-medium text-sand-700" htmlFor="dietary_info">
             Dietary / handling info
           </label>
           <input
             id="dietary_info"
             name="dietary_info"
             placeholder="e.g. Vegetarian, contains nuts, keep refrigerated"
-            className="mt-1 w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+            className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-stone-700" htmlFor="address_text">
+          <label className="block text-sm font-medium text-sand-700" htmlFor="address_text">
             Pickup address (optional label)
           </label>
           <input
             id="address_text"
             name="address_text"
             placeholder="e.g. Back entrance, Green Leaf Restaurant"
-            className="mt-1 w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+            className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
           />
         </div>
 
         <div>
-          <span className="block text-sm font-medium text-stone-700">Pickup location</span>
+          <span className="block text-sm font-medium text-sand-700">Pickup location</span>
           <div className="mt-1">
-            <MapPicker value={pin} onChange={setPin} />
+            <MapPicker value={pin} onChange={setPin} pinColor="brand" />
           </div>
           <input type="hidden" name="lat" value={pin?.lat ?? ""} />
           <input type="hidden" name="lng" value={pin?.lng ?? ""} />
@@ -107,7 +115,7 @@ export default function NewDonationPage() {
         <button
           type="submit"
           disabled={pending}
-          className="w-full rounded-md bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800 disabled:opacity-60"
+          className="w-full rounded-full bg-accent-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm shadow-accent-600/20 hover:bg-accent-700 disabled:opacity-60"
         >
           {pending ? "Listing..." : "List this donation"}
         </button>

@@ -14,12 +14,12 @@ export function CancelDonationForm({ donationId }: { donationId: string }) {
       <input
         name="reason"
         placeholder="Reason for cancelling (optional)"
-        className="flex-1 rounded-md border border-stone-300 px-3 py-1.5 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+        className="flex-1 rounded-xl border border-sand-300 px-3 py-1.5 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
       />
       <button
         type="submit"
         disabled={pending}
-        className="whitespace-nowrap rounded-md border border-red-300 px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
+        className="whitespace-nowrap rounded-full border border-red-300 px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50 disabled:opacity-60"
       >
         {pending ? "Cancelling..." : "Cancel donation"}
       </button>

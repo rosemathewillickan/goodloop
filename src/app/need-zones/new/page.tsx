@@ -2,11 +2,12 @@
 
 import { useActionState, useState } from "react";
 import dynamic from "next/dynamic";
+import { MapPinned } from "lucide-react";
 import { reportNeedZone, type FormState } from "@/app/need-zones/actions";
 
 const MapPicker = dynamic(() => import("@/components/MapPicker").then((m) => m.MapPicker), {
   ssr: false,
-  loading: () => <div className="h-[280px] animate-pulse rounded-md border border-stone-300 bg-stone-100" />,
+  loading: () => <div className="h-[280px] animate-pulse rounded-xl border border-sand-300 bg-sand-100" />,
 });
 
 const initialState: FormState = { error: null };
@@ -17,14 +18,19 @@ export default function NewNeedZonePage() {
 
   return (
     <div className="mx-auto max-w-xl px-4 py-8">
-      <h1 className="text-2xl font-semibold text-stone-900">Report a need zone</h1>
-      <p className="mt-1 text-sm text-stone-500">
-        An operator will verify this before it becomes visible for matching.
-      </p>
-
-      <form action={formAction} className="mt-6 space-y-4">
+      <div className="flex items-center gap-3">
+        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-role-ngo-bg text-role-ngo">
+          <MapPinned className="h-5 w-5" strokeWidth={2} />
+        </span>
         <div>
-          <label className="block text-sm font-medium text-stone-700" htmlFor="location_text">
+          <h1 className="text-2xl font-semibold text-sand-900">Report a need zone</h1>
+          <p className="text-sm text-sand-500">An operator will verify this before it becomes visible for matching.</p>
+        </div>
+      </div>
+
+      <form action={formAction} className="mt-6 space-y-4 rounded-2xl border border-sand-200 bg-white p-5">
+        <div>
+          <label className="block text-sm font-medium text-sand-700" htmlFor="location_text">
             Location description
           </label>
           <input
@@ -32,13 +38,13 @@ export default function NewNeedZonePage() {
             name="location_text"
             required
             placeholder="e.g. Under the flyover near Central Station, north side"
-            className="mt-1 w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+            className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-stone-700" htmlFor="estimated_people">
+            <label className="block text-sm font-medium text-sand-700" htmlFor="estimated_people">
               Estimated people
             </label>
             <input
@@ -46,18 +52,18 @@ export default function NewNeedZonePage() {
               name="estimated_people"
               type="number"
               min={1}
-              className="mt-1 w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+              className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-stone-700" htmlFor="urgency">
+            <label className="block text-sm font-medium text-sand-700" htmlFor="urgency">
               Urgency
             </label>
             <select
               id="urgency"
               name="urgency"
               defaultValue="medium"
-              className="mt-1 w-full rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+              className="mt-1 w-full rounded-xl border border-sand-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600"
             >
               <option value="low">Low</option>
               <option value="medium">Medium</option>
@@ -66,15 +72,15 @@ export default function NewNeedZonePage() {
           </div>
         </div>
 
-        <label className="flex items-center gap-2 text-sm text-stone-700">
-          <input type="checkbox" name="recurring" className="rounded border-stone-300" />
+        <label className="flex items-center gap-2 text-sm text-sand-700">
+          <input type="checkbox" name="recurring" className="rounded border-sand-300" />
           This is a recurring need, not a one-off
         </label>
 
         <div>
-          <span className="block text-sm font-medium text-stone-700">Location on map</span>
+          <span className="block text-sm font-medium text-sand-700">Location on map</span>
           <div className="mt-1">
-            <MapPicker value={pin} onChange={setPin} />
+            <MapPicker value={pin} onChange={setPin} pinColor="accent" />
           </div>
           <input type="hidden" name="lat" value={pin?.lat ?? ""} />
           <input type="hidden" name="lng" value={pin?.lng ?? ""} />
@@ -85,7 +91,7 @@ export default function NewNeedZonePage() {
         <button
           type="submit"
           disabled={pending}
-          className="w-full rounded-md bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800 disabled:opacity-60"
+          className="w-full rounded-full bg-accent-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm shadow-accent-600/20 hover:bg-accent-700 disabled:opacity-60"
         >
           {pending ? "Reporting..." : "Report need zone"}
         </button>
