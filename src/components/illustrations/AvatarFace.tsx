@@ -133,6 +133,62 @@ export function personTraits(seed: string) {
   };
 }
 
+const PANTS = "#33415C";
+const SHOE = "#FBEFDD";
+
+type Pose = "wave" | "carry" | "stand";
+
+// A full flat-vector person (head, hair, torso, arms, legs) in the same
+// chunky-outlined style as AvatarFace — used for hero art and any
+// illustration that needs a whole character, not just a bust.
+export function PersonFigure({ seed, pose = "stand", className = "" }: { seed: string; pose?: Pose; className?: string }) {
+  const { skin, hair, outfit, Hairstyle } = personTraits(seed);
+
+  return (
+    <g className={className}>
+      <rect x="18" y="108" width="13" height="40" rx="6" fill={PANTS} stroke={OUTLINE} strokeWidth="1.8" />
+      <rect x="34" y="108" width="13" height="40" rx="6" fill={PANTS} stroke={OUTLINE} strokeWidth="1.8" />
+      <rect x="16" y="142" width="17" height="10" rx="5" fill={SHOE} stroke={OUTLINE} strokeWidth="1.8" />
+      <rect x="32" y="142" width="17" height="10" rx="5" fill={SHOE} stroke={OUTLINE} strokeWidth="1.8" />
+
+      <rect x="12" y="58" width="41" height="54" rx="15" fill={outfit} stroke={OUTLINE} strokeWidth="2" />
+
+      {pose === "wave" && (
+        <>
+          <path d="M16 68C14 78 14 88 16 96" stroke={outfit} strokeWidth="11" strokeLinecap="round" />
+          <path d="M44 66C50 54 54 44 52 34" stroke={outfit} strokeWidth="11" strokeLinecap="round" />
+          <circle cx="52" cy="32" r="6" fill={skin} stroke={OUTLINE} strokeWidth="1.6" />
+        </>
+      )}
+      {pose === "carry" && (
+        <>
+          <path d="M14 70C8 78 6 86 10 92" stroke={outfit} strokeWidth="11" strokeLinecap="round" />
+          <path d="M46 70C52 78 54 86 50 92" stroke={outfit} strokeWidth="11" strokeLinecap="round" />
+          <rect x="8" y="84" width="38" height="30" rx="5" fill="var(--color-accent-500)" stroke={OUTLINE} strokeWidth="1.8" />
+          <path d="M8 98h38" stroke={OUTLINE} strokeWidth="1.6" />
+          <circle cx="18" cy="90" r="4.5" fill="var(--color-sun-400)" stroke={OUTLINE} strokeWidth="1.4" />
+          <circle cx="27" cy="90" r="4.5" fill="var(--color-brand-400)" stroke={OUTLINE} strokeWidth="1.4" />
+          <circle cx="36" cy="90" r="4.5" fill="var(--color-berry-400)" stroke={OUTLINE} strokeWidth="1.4" />
+        </>
+      )}
+      {pose === "stand" && (
+        <>
+          <path d="M16 68C14 78 14 88 16 96" stroke={outfit} strokeWidth="11" strokeLinecap="round" />
+          <path d="M44 68C46 78 46 88 44 96" stroke={outfit} strokeWidth="11" strokeLinecap="round" />
+        </>
+      )}
+
+      <circle cx="30" cy="26" r="16" fill={skin} stroke={OUTLINE} strokeWidth="1.6" />
+      <circle cx="24" cy="26" r="1.9" fill={OUTLINE} />
+      <circle cx="36" cy="26" r="1.9" fill={OUTLINE} />
+      <path d="M22 32c3 4 13 4 16 0" stroke={OUTLINE} strokeWidth="2.2" fill="none" strokeLinecap="round" />
+      <circle cx="18" cy="30" r="3" fill="#E8746A" opacity="0.35" />
+      <circle cx="42" cy="30" r="3" fill="#E8746A" opacity="0.35" />
+      <Hairstyle hair={hair} />
+    </g>
+  );
+}
+
 export function AvatarFace({ seed, className = "" }: { seed: string; className?: string }) {
   const skin = SKIN_TONES[hash(seed + "skin") % SKIN_TONES.length];
   const hair = HAIR_COLORS[hash(seed + "hair") % HAIR_COLORS.length];
