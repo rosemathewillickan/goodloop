@@ -22,6 +22,11 @@
 5. Repeat with [`supabase/migrations/0003_oauth_role_selection.sql`](supabase/migrations/0003_oauth_role_selection.sql)
    — makes a fresh Google sign-up pick a real role on first login instead of silently
    defaulting to volunteer (see "Note on roles" under step 8 below).
+6. Repeat with [`supabase/migrations/0004_fix_onboarding_role_guard.sql`](supabase/migrations/0004_fix_onboarding_role_guard.sql)
+   — fixes a bug where the role you picked in onboarding silently reverted back to
+   volunteer (an existing anti-self-promotion trigger was blocking the RPC's own
+   update). Also re-flags any account still stuck on volunteer from the bug so it
+   goes through the picker again.
 
 ## 3. Turn off email confirmation (so test logins work instantly)
 
