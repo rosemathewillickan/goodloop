@@ -19,6 +19,9 @@
    — adds the money-pledge table behind the **Supporter** role's "Support the mission" page
    (`/support`). No real payment processing is involved anywhere in this build; it only records
    the pledge amount, same spirit as the mocked OTP/WhatsApp integrations.
+5. Repeat with [`supabase/migrations/0003_oauth_role_selection.sql`](supabase/migrations/0003_oauth_role_selection.sql)
+   — makes a fresh Google sign-up pick a real role on first login instead of silently
+   defaulting to volunteer (see "Note on roles" under step 8 below).
 
 ## 3. Turn off email confirmation (so test logins work instantly)
 
@@ -136,10 +139,12 @@ can't be done for you.
 
 **C. That's it** — no code or env var changes needed; the button already points at whichever origin it's clicked from.
 
-**Note on roles:** Google sign-ups skip the role-selection form (Google doesn't carry
-custom app fields), so they land as `volunteer` — the same lowest-privilege default
-already used for any signup with a missing/invalid role. If someone signs up with
-Google but should be a restaurant/NGO/admin, promote them manually:
+**Note on roles:** Google doesn't carry our custom role field, so a fresh Google
+sign-up is sent to a one-time **"pick your role"** screen (`/onboarding/role`) right
+after their first login instead of silently landing as `volunteer` — see
+[`supabase/migrations/0003_oauth_role_selection.sql`](supabase/migrations/0003_oauth_role_selection.sql).
+Admin is still excluded from that picker on purpose. To promote any account to admin
+(or to change a role after the fact), do it manually:
 
 Look up their id first (`select id from auth.users where email = '...'`), then use it directly — same reasoning as step 6 above:
 

@@ -19,6 +19,7 @@ export interface Profile {
   name: string;
   phone: string | null;
   verification_status: VerificationStatus;
+  needs_role_selection: boolean;
   created_at: string;
 }
 

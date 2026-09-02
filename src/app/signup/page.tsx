@@ -54,7 +54,7 @@ function SignupForm() {
         <div className="mt-6">
           <GoogleSignInButton />
           <p className="mt-2 text-center text-xs text-sand-400">
-            Starts as a volunteer — an operator can change your role after sign-up.
+            You&apos;ll pick your role on the next screen.
           </p>
         </div>
 

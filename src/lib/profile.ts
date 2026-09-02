@@ -16,6 +16,7 @@ export async function getCurrentProfile(): Promise<Profile | null> {
 export async function requireProfile(): Promise<Profile> {
   const profile = await getCurrentProfile();
   if (!profile) redirect("/login");
+  if (profile.needs_role_selection) redirect("/onboarding/role");
   return profile;
 }
 
