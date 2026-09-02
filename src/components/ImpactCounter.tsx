@@ -15,17 +15,39 @@ export function ImpactCounter({ value, className = "" }: { value: string; classN
     if (!el) return;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const start = () => (reduced ? setDisplay(value) : animate(value, setDisplay));
+
+    let started = false;
+    const startOnce = () => {
+      if (started) return;
+      started = true;
+      start();
+    };
+
+    // Guard against any environment where IntersectionObserver never fires
+    // (unusual viewport states, older browsers) — the counter should never
+    // stay stuck at zero.
+    const fallback = window.setTimeout(startOnce, 1200);
+
+    if (typeof IntersectionObserver === "undefined") {
+      startOnce();
+      return () => window.clearTimeout(fallback);
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
         observer.disconnect();
-        if (reduced) setDisplay(value);
-        else animate(value, setDisplay);
+        window.clearTimeout(fallback);
+        startOnce();
       },
       { threshold: 0.4 }
     );
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, [value]);
 
   return (

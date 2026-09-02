@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 
 export type FormState = { error: string | null; success?: boolean };
@@ -24,6 +25,7 @@ export async function pledgeSupport(_prev: FormState, formData: FormData): Promi
   });
   if (error) return { error: error.message };
 
+  revalidatePath("/support");
   return { error: null, success: true };
 }
 
