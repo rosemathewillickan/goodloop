@@ -38,9 +38,9 @@ const PATHS = [
     color: "var(--color-role-supporter)",
     bg: "var(--color-role-supporter-bg)",
     title: "Support the mission",
-    body: "Curious about the impact, or just here to cheer the loop on.",
-    cta: "See our impact",
-    href: "/impact",
+    body: "Pledge an amount to help cover pickups, packaging and outreach.",
+    cta: "Support directly",
+    href: "/support",
     note: "No account needed",
   },
 ];

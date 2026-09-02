@@ -15,6 +15,10 @@
 1. Left sidebar → **SQL Editor** → **+** → **Create a new snippet**.
 2. Paste the contents of [`supabase/migrations/0001_init.sql`](supabase/migrations/0001_init.sql) → **Run**.
 3. Confirm "Success. No rows returned."
+4. Repeat with [`supabase/migrations/0002_supporter_pledges.sql`](supabase/migrations/0002_supporter_pledges.sql)
+   — adds the money-pledge table behind the **Supporter** role's "Support the mission" page
+   (`/support`). No real payment processing is involved anywhere in this build; it only records
+   the pledge amount, same spirit as the mocked OTP/WhatsApp integrations.
 
 ## 3. Turn off email confirmation (so test logins work instantly)
 

@@ -39,9 +39,9 @@ const STAKEHOLDERS = [
     bg: "var(--color-role-supporter-bg)",
     title: "Supporter",
     question: "Want to make an impact?",
-    body: "Explore GoodLoop's impact and discover ways to support the network.",
-    cta: "See the impact",
-    href: "/impact",
+    body: "Pledge an amount directly, or explore GoodLoop's impact first.",
+    cta: "Support the mission",
+    href: "/support",
   },
 ];
 

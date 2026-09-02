@@ -116,6 +116,14 @@ export interface Notification {
   created_at: string;
 }
 
+export interface SupporterPledge {
+  id: string;
+  supporter_name: string | null;
+  amount_inr: number;
+  message: string | null;
+  created_at: string;
+}
+
 // Minimal shape satisfying @supabase/ssr's generic constraint without
 // hand-modeling every Insert/Update/Relationships variant.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
