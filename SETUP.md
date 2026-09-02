@@ -62,22 +62,34 @@ where id = '<the-id>';
 
 Use the id directly, not a `where id = (select ...)` subquery matching on email — if the subquery matches zero rows (e.g. a typo) the `update` silently affects nothing and gives no error. Also note: `guard_profile_update()` in the migration only blocks role/verification changes from an authenticated PostgREST session (`auth.uid()` is set) — raw SQL Editor updates have `auth.uid() is null` and always pass through, so this promotion works even before any admin exists.
 
-New restaurant/volunteer/ngo accounts start `pending` — as admin, verify them under **Verify** in the nav before they can donate/accept runs/report need zones.
+New restaurant/volunteer/ngo accounts are **auto-verified on signup** (see below) so
+anyone — including a professor grading this without seeded credentials — can sign up
+and immediately donate/accept runs/report need zones. The **Verify** page under admin
+still exists and works if you want to demonstrate that workflow (e.g. by manually
+setting an account back to `pending` first).
 
-### Seed demo data for the three test accounts
+### Seed demo data + auto-verify all signups
 
-To make the restaurant/volunteer/ngo dashboards show real donations, runs, and need
-zones instead of empty states, run [`supabase/seed_demo_data.sql`](supabase/seed_demo_data.sql)
-once in the SQL Editor (paste and Run). It's idempotent — safe to run more than once,
-it just skips rows it already created. It adds:
+Run [`supabase/seed_demo_data.sql`](supabase/seed_demo_data.sql) once in the SQL Editor
+(paste and Run). It's idempotent — safe to run more than once, it just skips rows/changes
+it already made. It:
 
-- Two open donations for the restaurant (so **Active donations** isn't 0)
-- One donation matched + assigned to the volunteer test account (active run)
-- One donation picked up by the volunteer test account (active run, later stage)
-- One completed run handled by the ngo test account (bumps meals redistributed)
-- One open, unclaimed run for the volunteer to accept from **Available runs nearby**
-- An active + a pending need zone reported by the ngo test account
-- Matching entries in each account's **Notifications** feed
+- Redefines the new-user trigger so every future signup starts `verified` instead of
+  `pending`, and backfills every existing non-verified account (including ones created
+  by signing up through the live app, e.g. via Google) to `verified`
+- Adds four open donations for the restaurant test account (so **Active donations**
+  isn't 0), three of them left unclaimed so **any** newly-verified volunteer/ngo account
+  sees them under "Available runs nearby" / "Open runs you can coordinate" — not just
+  the seeded ones
+- Adds one donation matched + assigned to the volunteer test account (active run)
+- Adds one donation picked up by the volunteer test account (active run, later stage)
+- Adds one completed run handled by the ngo test account (bumps meals redistributed)
+- Adds an active + a pending need zone reported by the ngo test account
+- Adds matching entries in each account's **Notifications** feed
+
+A brand-new restaurant signup still starts with zero donations of its own — donations
+are owned by whoever creates them, so that one's a live "click Donate food and watch it
+appear" demo rather than something pre-seeded.
 
 ## 7. Golden path to test
 

@@ -1,6 +1,9 @@
 -- Seeds realistic demo data (donations, food runs, need zones, notifications)
 -- for the three seeded stakeholder accounts, so each dashboard has something
--- to look at right after logging in instead of empty states.
+-- to look at right after logging in instead of empty states. Also makes
+-- *every* signup (present and future) auto-verified, so anyone grading this
+-- — not just the three seeded accounts — can sign up and immediately see
+-- and interact with the demo runs, rather than hitting a "pending" wall.
 --
 -- Safe to re-run: every insert is guarded with a "not exists" check keyed on
 -- a distinguishing field, so running this twice won't create duplicates.
@@ -9,6 +12,41 @@
 -- snippet -> paste -> Run). Requires restaurant.test@gmail.com,
 -- volunteer.test@gmail.com, ngo.test@gmail.com and admin.test@gmail.com to
 -- already exist (see SETUP.md section 6).
+
+-- ============================================================
+-- 0. Auto-verify every signup, present and future
+-- ============================================================
+
+create or replace function public.handle_new_user() returns trigger
+  language plpgsql security definer set search_path = public as $fn$
+declare
+  v_role text := new.raw_user_meta_data->>'role';
+  v_name text := coalesce(new.raw_user_meta_data->>'name', '');
+  v_phone text := new.raw_user_meta_data->>'phone';
+  v_org text := coalesce(new.raw_user_meta_data->>'organization_name', '');
+begin
+  if v_role is null or v_role not in ('restaurant', 'volunteer', 'ngo') then
+    v_role := 'volunteer';
+  end if;
+
+  insert into public.profiles (id, role, name, phone, verification_status)
+  values (new.id, v_role, v_name, v_phone, 'verified');
+
+  if v_role = 'restaurant' then
+    insert into public.restaurants (profile_id, organization_name) values (new.id, v_org);
+  elsif v_role = 'volunteer' then
+    insert into public.volunteers (profile_id) values (new.id);
+  elsif v_role = 'ngo' then
+    insert into public.ngo_partners (profile_id, organization_name) values (new.id, v_org);
+  end if;
+
+  return new;
+end;
+$fn$;
+
+-- Backfill anyone who already signed up before this ran (e.g. your own
+-- Google-sign-in test account) so they stop seeing "pending" right away.
+update public.profiles set verification_status = 'verified' where verification_status <> 'verified';
 
 do $$
 declare
@@ -157,6 +195,41 @@ begin
       (restaurant_id, food_type, quantity_meals, dietary_info, pickup_deadline, address_text, lat, lng, status)
     values
       (v_restaurant, 'Fruits & snacks', 18, 'Vegan, nut-free', now() + interval '5 hours', 'Green Leaf Kitchen, Bandra', 19.076, 72.877, 'assigned')
+    returning id into v_donation;
+
+    insert into public.food_runs (donation_id, need_zone_id, assigned_by, status)
+    values (v_donation, v_zone_active, v_admin, 'assigned');
+
+    perform public.log_event(v_donation, 'matched', 'Matched to a verified need zone by operator');
+    insert into public.notifications (user_id, message, channel) values
+      (v_restaurant, 'Your donation has been matched to a nearby distribution point.', 'whatsapp');
+  end if;
+
+  -- ============================================================
+  -- 6. Two more open, unclaimed runs — so there's more than one thing
+  --    for a freshly-verified account to browse and accept
+  -- ============================================================
+
+  if not exists (select 1 from public.donations where restaurant_id = v_restaurant and food_type = 'Fresh salads') then
+    insert into public.donations
+      (restaurant_id, food_type, quantity_meals, dietary_info, pickup_deadline, address_text, lat, lng, status)
+    values
+      (v_restaurant, 'Fresh salads', 22, 'Vegan, gluten-free', now() + interval '6 hours', 'Green Leaf Kitchen, Bandra', 19.076, 72.877, 'assigned')
+    returning id into v_donation;
+
+    insert into public.food_runs (donation_id, need_zone_id, assigned_by, status)
+    values (v_donation, v_zone_active, v_admin, 'assigned');
+
+    perform public.log_event(v_donation, 'matched', 'Matched to a verified need zone by operator');
+    insert into public.notifications (user_id, message, channel) values
+      (v_restaurant, 'Your donation has been matched to a nearby distribution point.', 'whatsapp');
+  end if;
+
+  if not exists (select 1 from public.donations where restaurant_id = v_restaurant and food_type = 'Soup & bread') then
+    insert into public.donations
+      (restaurant_id, food_type, quantity_meals, dietary_info, pickup_deadline, address_text, lat, lng, status)
+    values
+      (v_restaurant, 'Soup & bread', 28, 'Vegetarian', now() + interval '7 hours', 'Green Leaf Kitchen, Bandra', 19.076, 72.877, 'assigned')
     returning id into v_donation;
 
     insert into public.food_runs (donation_id, need_zone_id, assigned_by, status)

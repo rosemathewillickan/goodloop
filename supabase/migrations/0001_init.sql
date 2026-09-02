@@ -152,8 +152,13 @@ begin
     v_role := 'volunteer';
   end if;
 
-  insert into public.profiles (id, role, name, phone)
-  values (new.id, v_role, v_name, v_phone);
+  -- Auto-verified so a fresh signup can immediately donate/accept runs/report
+  -- need zones without waiting on an operator — this is a coursework demo
+  -- build, not a production trust boundary. The admin Verify page still
+  -- exists to demonstrate the workflow and to move someone back to
+  -- 'pending'/'rejected' if you want to show that path instead.
+  insert into public.profiles (id, role, name, phone, verification_status)
+  values (new.id, v_role, v_name, v_phone, 'verified');
 
   if v_role = 'restaurant' then
     insert into public.restaurants (profile_id, organization_name) values (new.id, v_org);
