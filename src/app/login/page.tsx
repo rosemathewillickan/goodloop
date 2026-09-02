@@ -2,9 +2,9 @@
 
 import { useActionState } from "react";
 import Link from "next/link";
-import { Leaf } from "lucide-react";
 import { signIn, type FormState } from "@/app/auth/actions";
 import { GoogleSignInButton } from "@/components/GoogleSignInButton";
+import { LogoMark } from "@/components/illustrations/Logo";
 
 const initialState: FormState = { error: null };
 
@@ -21,9 +21,7 @@ export default function LoginPage() {
         }}
       />
       <div className="rounded-3xl border-2 border-sand-200 bg-white p-8 shadow-sm shadow-sand-900/5">
-        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-600 text-white">
-          <Leaf className="h-5 w-5" strokeWidth={2.5} />
-        </span>
+        <LogoMark className="h-11 w-11" />
         <h1 className="mt-4 text-2xl font-semibold text-sand-900">Log in</h1>
         <p className="mt-1 text-sm text-sand-500">Welcome back to GoodLoop.</p>
 

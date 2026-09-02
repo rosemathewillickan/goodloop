@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  Leaf,
   Home,
   PackagePlus,
   History,
@@ -23,6 +22,7 @@ import { createClient } from "@/lib/supabase/server";
 import { signOut } from "@/app/auth/actions";
 import { ROLE_META } from "@/lib/roles";
 import { AvatarFace } from "@/components/illustrations/AvatarFace";
+import { Logo } from "@/components/illustrations/Logo";
 import type { Role } from "@/lib/supabase/types";
 
 const PUBLIC_NAV_LINKS = [
@@ -76,11 +76,8 @@ export async function Navbar() {
   return (
     <header className="sticky top-0 z-20 border-b border-sand-200/70 bg-sand-50/90 backdrop-blur">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-        <Link href={profile ? "/dashboard" : "/"} className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-600 text-white">
-            <Leaf className="h-4 w-4" strokeWidth={2.5} />
-          </span>
-          <span className="text-lg font-semibold tracking-tight text-brand-800">GoodLoop</span>
+        <Link href={profile ? "/dashboard" : "/"}>
+          <Logo />
         </Link>
 
         <nav className="hidden items-center gap-1 sm:flex">
