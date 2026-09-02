@@ -5,6 +5,7 @@
 // hero visually matches every dashboard and page around it.
 import { PersonFigure } from "./AvatarFace";
 import { HelpingHandsIllustration } from "./HelpingHands";
+import { ShopFrontIllustration } from "./ShopFront";
 import { LoopRibbon } from "./LoopRibbon";
 import { Doodle } from "./Doodle";
 
@@ -46,9 +47,7 @@ export function EcosystemLoop({ className = "" }: { className?: string }) {
             >
               {scene.key === "restaurant" && (
                 <>
-                  <svg viewBox="0 0 60 155" className="h-24 w-24 sm:h-28 sm:w-28" aria-hidden="true">
-                    <PersonFigure seed="ecosystem-restaurant" pose="wave" />
-                  </svg>
+                  <ShopFrontIllustration className="h-20 w-20 sm:h-24 sm:w-24" />
                   <Doodle kind="sparkle" color="var(--color-sun-400)" className="absolute -right-1 -top-1 h-6 w-6" />
                 </>
               )}

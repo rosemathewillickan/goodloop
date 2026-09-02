@@ -16,6 +16,7 @@ import {
   Waypoints,
   Compass,
   HandHeart,
+  PlayCircle,
 } from "lucide-react";
 import { getCurrentProfile } from "@/lib/profile";
 import { createClient } from "@/lib/supabase/server";
@@ -27,6 +28,7 @@ import type { Role } from "@/lib/supabase/types";
 const PUBLIC_NAV_LINKS = [
   { href: "/how-it-works", label: "How it works", icon: Waypoints },
   { href: "/explore", label: "Explore", icon: Compass },
+  { href: "/demo", label: "Demos", icon: PlayCircle },
   { href: "/impact", label: "Impact", icon: HandHeart },
 ];
 

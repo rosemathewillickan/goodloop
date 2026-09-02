@@ -3,6 +3,7 @@ import { ChefHat, Bike, HeartHandshake, Heart, Leaf, ArrowRight, ShieldCheck, Pa
 import { getCurrentProfile, roleHome } from "@/lib/profile";
 import { redirect } from "next/navigation";
 import { EcosystemLoop } from "@/components/illustrations/EcosystemLoop";
+import { ShopFrontIllustration } from "@/components/illustrations/ShopFront";
 import { FoodClusterIllustration } from "@/components/illustrations/FoodCluster";
 import { AvatarFace, PersonFigure } from "@/components/illustrations/AvatarFace";
 import { Doodle } from "@/components/illustrations/Doodle";
@@ -213,8 +214,13 @@ export default async function Home() {
           </div>
 
           <div className="mt-10 flex items-center justify-center gap-4">
+            <span
+              className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full ring-4 ring-white/20 sm:h-20 sm:w-20"
+              style={{ backgroundColor: "var(--color-role-restaurant-bg)" }}
+            >
+              <ShopFrontIllustration className="h-12 w-12 sm:h-14 sm:w-14" />
+            </span>
             {[
-              { seed: "cta-chef", pose: "wave" as const, bg: "var(--color-role-restaurant-bg)" },
               { seed: "cta-volunteer", pose: "carry" as const, bg: "var(--color-role-volunteer-bg)" },
               { seed: "cta-ngo", pose: "stand" as const, bg: "var(--color-role-ngo-bg)" },
             ].map((p) => (
